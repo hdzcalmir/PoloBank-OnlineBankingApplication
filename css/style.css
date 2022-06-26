@@ -8404,8 +8404,6 @@ a[data-toggle="collapse"] {
         box-shadow:
         1px 2px 2px rgba(0, 0, 0, 0.25)
       ;
-      background: rgb(34,108,224);
-      background: linear-gradient(169deg, rgba(34,108,224,1) 28%, rgba(0,212,255,1) 100%);
       }
       
       .details{
@@ -9170,4 +9168,16 @@ a[data-toggle="collapse"] {
   color: #fff;
   display: inline-block;
   margin-left: 11.5rem;
+}
+
+.inner-visa {
+
+    background: linear-gradient(169deg, rgb(13 13 13) 28%, rgb(181 186 187) 100%);
+
+}
+
+.inner-mastercard {
+
+  background: linear-gradient(169deg, rgba(34,108,224,1) 28%, rgba(0,212,255,1) 100%);
+
 }

@@ -88,7 +88,22 @@
           <div class="col-sm-7 bg-white analitycs"><canvas id="myCharts"></canvas></div>
           <div class="col-xl-4 cards bg-white d-flex justify-content-center"> 
             <div class="row">
-              <div class="inner-card" data-ride="carousel">
+              <?php 
+
+              $bojakartice = $db->prepare("SELECT tip_kartice FROM kartice WHERE id_korisnika = ?"); 
+              $bojakartice->execute([$_SESSION['clientSQLID']]); 
+              $rowsboja = $bojakartice->fetchAll(); 
+              $tip = ''; 
+              $boja = ''; 
+              foreach ($rowsboja as $row) { $tip = $row['tip_kartice']; }
+               if($tip == 'Master Card') {
+                 $boja = 'inner-mastercard';
+               } elseif($tip == 'Visa') {
+                 $boja = 'inner-visa';
+               }
+
+              ?>
+              <div class="inner-card <?php echo $boja; ?>" data-ride="carousel">
               <img src="img/card-logo.png" alt="polo bank logo" class="card-logo">
               <img src="img/debit.png" alt="debit kartica" class="debit">
               <img src="img/chip.png" alt="cip kartice" class="card-chip">
