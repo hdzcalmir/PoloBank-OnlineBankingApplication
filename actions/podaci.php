@@ -96,7 +96,7 @@
         $datum = $_POST['datum'];
         $grad = $_POST['grad'];
         $adresa = $_POST['adresa'];
-        $pin = $_POST['pin'];
+        (string)$pin = $_POST['pin'];
         $kartica = $_POST['cards'];
 
         $stmt->execute([$username, $email, $hash, $datum, $grad, $adresa]);
