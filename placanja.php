@@ -163,6 +163,16 @@
             </script>
           ';
           unset($_SESSION['successuzorak']);
+          } elseif(!empty($_SESSION['fail']) == 'Morate ispuniti sva obavezna polja!') {
+            echo '<p class="incorrectpym">';
+            echo $_SESSION['fail'];
+          echo '</p>';
+          echo '
+          <script>
+            document.querySelector(".incorrectpym").style.display = "block";
+          </script>
+        ';
+        unset($_SESSION['fail']);
           }
         ?> 
             <button class="btn btn-primary bg-primary button-payment modal-button">Plati</button>

@@ -48,7 +48,7 @@ if(isset($_POST['ime_prezime']) && isset($_POST['broj_racuna']) && isset($_POST[
 
 // PLACANJA - TRANSAKCIJE
 
-if(isset($_POST['brojracuna']) && isset($_POST['imeprezime']) && isset($_POST['svrha_uplate']) && isset($_POST['iznos_uplate'])) {
+if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_POST['iznos_uplate'])) {
     
 
     // Getanje broja računa kartice korisnika
@@ -187,14 +187,17 @@ if(isset($_POST['brojracuna']) && isset($_POST['imeprezime']) && isset($_POST['s
             killConnection_PDO($db);
             echo'<script>window.location="../placanja.php";</script>';  
     
-        } else {
-
-        $_SESSION['success'] = 'Transakcija uspješno izvršena!';
-        killConnection_PDO($db);
-        echo'<script>window.location="../placanja.php";</script>';  
+        } else { 
+            $_SESSION['success'] = 'Transakcija uspješno izvršena!';
+            killConnection_PDO($db);
+            echo'<script>window.location="../placanja.php";</script>';  
         }
     }
-}    
+}  else {
+    $_SESSION['fail'] = 'Niste unijeli neko od obaveznih polja!';
+    killConnection_PDO($db);
+    echo'<script>window.location="../placanja.php";</script>';  
+} 
 
 
 // UZORAK MODAL

@@ -4,7 +4,7 @@
 
     // PROMJENA SIFRE
     
-    if(isset($_POST['oldpass']) && isset($_POST['newpass']) && isset($_POST['newpassagain'])) { 
+    if(!empty($_POST['oldpass']) && !empty($_POST['newpass']) && !empty($_POST['newpassagain'])) { 
       $oldpassword = $_POST['oldpass']; 
       $newpassword = $_POST['newpass'];
       $newpasswordagain = $_POST['newpassagain'];
@@ -26,14 +26,14 @@
           echo'<script>window.location="../vise.php";</script>';
         }
       } else {  
-        $_SESSION['error'] = 'Pogriješili ste šifru, pokušajte ponovo.';
-        echo'<script>window.location="../vise.php";</script>';  
-    }
+            $_SESSION['error'] = 'Pogriješili ste šifru, pokušajte ponovo.';
+            echo'<script>window.location="../vise.php";</script>';  
+        }
     }
 
     // PROMJENA PINA
     
-    if(isset($_POST['oldpin']) && isset($_POST['newpin']) && isset($_POST['newpinagain'])) { 
+    if(!empty($_POST['oldpin']) && !empty($_POST['newpin']) && !empty($_POST['newpinagain'])) { 
       $oldpin = $_POST['oldpin']; 
       $newpin = $_POST['newpin'];
       $newpinagain = $_POST['newpinagain'];
@@ -54,15 +54,57 @@
           echo'<script>window.location="../vise.php";</script>';   
          }
       } else {  
-        $_SESSION['error'] = 'Pogriješili ste pin, pokušajte ponovo.';
-        echo'<script>window.location="../vise.php";</script>';  
-    }
+            $_SESSION['error'] = 'Pogriješili ste pin, pokušajte ponovo.';
+            echo'<script>window.location="../vise.php";</script>';  
+        } 
+    } 
 
+    // LOGIN
+  
+    if(!empty($_POST['email_login']) && !empty($_POST['password_login'])) {
+        $email = $_POST['email_login'];
+        $password = $_POST['password_login']; 
+
+        $statement = $db->prepare("SELECT * FROM korisnici WHERE email = ?"); 
+        $statement->execute([$email]);
+
+        $rows = $statement->fetchAll();
+        $realpwd = $name = $usermail = $stanje_racuna = '';
+
+        foreach ($rows as $row) {
+            $realpwd = $row['sifra']; 
+            $name = $row['ime_prezime'];  
+            $usermail = $row['email'];  
+            $stanje_racuna = $row['stanje_racuna'];  
+            $sqlid = $row['id_korisnika'];  
+            
+        }
+
+        if(password_verify($password, $realpwd)) {
+            $_SESSION['clientEmail'] = $usermail;
+            $_SESSION['clientSQLID'] = $sqlid;
+            $_SESSION['clientName'] = $name;
+            $_SESSION['stanje_racuna'] = $stanje_racuna;
+            $_SESSION['userSession'] = $name;
+            echo'<script>window.location="../panel.php";</script>';
+        }
+        else {  
+            $_SESSION['error'] = 'Vaš email ili lozinka nisu validni, pokušajte ponovo.';
+            echo'<script>window.location="../index.php";</script>';
+            killConnection_PDO($db);
+        } 
     }
-    
+    if(isset($_GET['logout'])) {
+		if(isset($_SESSION['userSession'])) { unset($_SESSION['userSession']); session_destroy(); killConnection_PDO($db); }
+        echo'<script>window.location="../index.php";</script> '; 
+        return true;
+	}  
+
+
     // REGISTRACIJA
 
-    if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['ime_prezime']) && isset($_POST['grad'])) { 
+    if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['ime_prezime']) && !empty($_POST['grad']) &&
+    !empty($_POST['adresa']) && !empty($_POST['cards']) && !empty($_POST['pin']) && !empty($_POST['datum'])) {
         $password = $_POST['password']; 
         $email = $_POST['email'];
         $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -72,23 +114,19 @@
 
         if($stmtmt4->rowCount() > 0) { 
             $_SESSION['error'] = 'Već postoji račun sa takvim e-mailom, pokušajte ponovo.';
-            echo'<script>window.location="../index.php";</script>';  
-
+            echo'<script>window.location="../index.php";</script>';
             killConnection_PDO($db);
             return true;
         }
 
-        // $datumRodjenja = $_POST['datum'];
+        $datumRodjenja = $_POST['datum'];
+        $trenutnaGodina = date('Y');
 
-        // $date = new DateTime($datumRodjenja);
-        // $now = new DateTime();
-        // $interval = $now->diff($date);
-        
-        // if($interval< 18) {
+        (int)$filterGodina = substr($datumRodjenja, 0,4);
 
-        //     echo'<script>window.location="../index.php";</script>';  
+        $konacnaGodina = $trenutnaGodina - $filterGodina;
 
-        // } else {
+        if($konacnaGodina >= 18) {
 
         $stmt = $db->prepare("INSERT INTO korisnici (ime_prezime, email, sifra, datum_rodjenja, grad, adresa) VALUES (?, ?, ?, ?, ?, ?)");
     
@@ -133,70 +171,37 @@
 
         $count = count($stmtmt->fetchAll(PDO::FETCH_ASSOC));
 
-        if($count == 0) { 
-            $stmtmt2 = $db->prepare("SELECT iban FROM kartice WHERE iban = ?"); 
-            $stmtmt2->execute([$iban]);
+            if($count == 0) {
+                $stmtmt2 = $db->prepare("SELECT iban FROM kartice WHERE iban = ?"); 
+                $stmtmt2->execute([$iban]);
 
-            $noviIban = strval($iban);
-            $noviPin = (string)$pin;
-            
-            // Insertovanje kartice korisnika
-            $stmt = $db->prepare("INSERT INTO kartice (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$sqlid, $kartica, $noviIban, $broj_kartice, $datum_isteka, $noviPin, $balans_kartice]); 
+                $noviIban = strval($iban);
+                $noviPin = (string)$pin;
+                
+                // Insertovanje kartice korisnika
+                $stmt = $db->prepare("INSERT INTO kartice (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$sqlid, $kartica, $noviIban, $broj_kartice, $datum_isteka, $noviPin, $balans_kartice]); 
 
-            // Kreiranje analitike za korisnika
-            $stmtanalitika = $db->prepare("INSERT INTO analitika (id_korisnika) VALUES (?)");
-            $stmtanalitika->execute([$sqlid]); 
+                // Kreiranje analitike za korisnika
+                $stmtanalitika = $db->prepare("INSERT INTO analitika (id_korisnika) VALUES (?)");
+                $stmtanalitika->execute([$sqlid]); 
 
-            $_SESSION['userSession'] = $username;
-            echo'<script>window.location="../panel.php";</script>'; 
-        }  
+                $_SESSION['userSession'] = $username;
+                echo'<script>window.location="../panel.php";</script>'; 
+            }
         return true;
-    }
+        }  else {
+            $_SESSION['year'] = 'Morate imati 18 ili više godina da biste otvorili račun!';
+                echo'<script>window.location="../index.php";</script>';
+                killConnection_PDO($db); 
 
-// }
-
-    // LOGIN
-  
-    if(isset($_POST['email_login']) && isset($_POST['password_login'])) {
-        $email = $_POST['email_login'];
-        $password = $_POST['password_login']; 
-
-        $statement = $db->prepare("SELECT * FROM korisnici WHERE email = ?"); 
-        $statement->execute([$email]);
-
-        $rows = $statement->fetchAll();
-        $realpwd = $name = $usermail = $stanje_racuna = '';
-
-        foreach ($rows as $row) {
-            $realpwd = $row['sifra']; 
-            $name = $row['ime_prezime'];  
-            $usermail = $row['email'];  
-            $stanje_racuna = $row['stanje_racuna'];  
-            $sqlid = $row['id_korisnika'];  
-            
-        }
-
-        if(password_verify($password, $realpwd)) {
-            $_SESSION['clientEmail'] = $usermail;
-            $_SESSION['clientSQLID'] = $sqlid;
-            $_SESSION['clientName'] = $name;
-            $_SESSION['stanje_racuna'] = $stanje_racuna;
-            $_SESSION['userSession'] = $name;
-            echo'<script>window.location="../panel.php";</script>';
-        }
-        else {  
-            $_SESSION['error'] = 'Vaš email ili lozinka nisu validni, pokušajte ponovo.';
-            echo'<script>window.location="../index.php";</script>';  
-
-            killConnection_PDO($db);
         }
     }
-    if(isset($_GET['logout'])) {
-		if(isset($_SESSION['userSession'])) { unset($_SESSION['userSession']); session_destroy(); killConnection_PDO($db); }
-        echo'<script>window.location="../index.php";</script> '; 
-        return true;
-	}  
+    else {
+        $_SESSION['fields'] = 'Molimo popunite sva polja!';
+        echo'<script>window.location="../index.php";</script>';
+        killConnection_PDO($db);
+    }
 
     function createIban($br1, $br2, $br3, $br4, $br5, $br6, $br7, $br8, $br9, $br10, $br11, $br12) {
         $default = '1613';
@@ -216,5 +221,6 @@
         $visa = sprintf($visa, $default, $br1, $br2, $br3, $br4, $br5, $br6, $br7, $br8, $br9, $br10, $br11, $br12);
         return $visa;
     } 
+    
 
 ?>

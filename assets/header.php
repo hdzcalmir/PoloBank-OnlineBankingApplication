@@ -1,6 +1,6 @@
 <?php 
   include_once('actions/db.php');
-  session_start();
+  if (session_status() == PHP_SESSION_NONE) { session_start(); }
   if(!isset($_SESSION['userSession'])) { 
     echo'<script>window.location="index.php";</script>'; 
     killConnection_PDO($db); 

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php if (session_status() == PHP_SESSION_NONE) { session_start(); } ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -338,6 +338,32 @@
             echo '<p class="incorrect">';
               echo $_SESSION['error'];
             echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#register").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            session_destroy();
+          }elseif(!empty($_SESSION['year']) && $_SESSION['year'] == 'Morate imati 18 ili više godina da biste otvorili račun!'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['year'];
+            echo '</p>'; 
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#register").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            session_destroy();
+          }elseif(!empty($_SESSION['fields']) && $_SESSION['fields'] == 'Molimo popunite sva polja!'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['fields'];
+            echo '</p>'; 
 
             echo '
               <script>
