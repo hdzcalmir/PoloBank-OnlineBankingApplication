@@ -1,0 +1,310 @@
+@media screen and (max-width: 1784px) { 
+  .about {
+    width: 50%;
+}
+  .more {
+    justify-content: center;
+  }
+  .bank_name {
+    margin: 2rem 0;
+    padding: 0rem 0rem;
+    font-size: 24px;
+}
+}
+@media screen and (max-width: 1600px) { 
+  .transactions_form, .transaction_acc, .movements__typep, .sample_form {
+    font-size: 12px;
+    margin-right: 0rem;
+  }
+
+  }
+@media screen and (max-width: 1400px) { 
+    .details {
+      left: 2rem;
+  }
+    .details-1 {
+      right: 2rem;
+  }
+  
+    .inner-card {
+      width: 75%;
+    }
+    .transaction_acc {
+      width: 140px;
+  }
+  
+  }
+  
+  @media screen and (max-width: 1199px) { 
+
+    .modal__form {
+      margin: 0 2rem;
+      gap: 2rem;
+  }
+
+  .modal__form div {
+    font-size: 16px;
+}
+
+    .details {
+      left: 0rem;
+  }
+    .details-1 {
+      right: 0rem;
+  }
+  .inner-card {
+    width: 100%;
+  }
+    .transactions_switch, .transactions_form, .transaction_acc, .movements__typep, .sample_form {
+      font-size: 13px;
+    }
+    .transaction {
+      width: 100%;
+    }
+  
+    .cards {
+      width: 500px;
+      left: 0rem;
+      right: 0rem;
+      margin-top: 0;
+      left: 0;  
+  }
+  
+  .transaction_acc {
+    width: 180px;
+}
+
+  .movements__date {
+    font-size: 12px;
+}
+.movements__value {
+  font-size: 16px;
+}
+
+  .samples, .transactions-all, .transaction {
+    width: 100%;
+  }
+  
+  .red {
+    justify-content: center;
+  }
+  
+  .expenses{
+    flex: 0 0 40%;
+    max-width: 100%;
+  }
+  .transactions{
+    flex: 0 0 50%;
+    max-width: 100%;
+  }
+  .analitycs{
+    flex: 0 0 80%;
+    max-width: 100%;
+  }
+  
+}
+
+@media screen and (max-width: 1149px) { 
+  .about {
+    width: 100%;
+}
+}
+
+@media screen and (max-width: 992px) { 
+  .modal__form div {
+    font-size: 15px;
+}
+  .modal__form input {
+    font-size: 15px;
+}
+
+#sidebar ul li a {
+  padding: 10px 10px;
+}
+
+}
+
+@media screen and (max-width: 768px) { 
+
+  .modal__header {
+    font-size: 1.5rem;
+}
+.card-heading {
+  margin: -3px 6px;
+}
+
+.movements__row {
+  padding: 6px 3px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+}
+
+  @media screen and (max-width: 576px) { 
+
+    .movements__row {
+      padding: 7px 9px;
+  }
+
+    .modal_window, .modal_pass {
+      padding: 1rem 3rem;
+  }
+
+.modal__form {
+  margin: 0 2rem;
+  gap: 1rem;
+}
+  .cards {
+    width: 75%;
+  }
+  
+  .details {
+    left: 2rem;
+  }
+  .details-1 {
+    right: 2rem;
+  }
+  
+  .inner-card {
+    width: 75%;
+  }
+  
+  .sample_form, .exchange_form {
+    margin-right: -5rem;
+}
+
+.transaction_acc {
+  width: 160px;
+}
+
+  }
+
+  @media screen and (max-width: 496px) { 
+  .cards {
+    width: 75%;
+  }
+  
+  .details {
+    left: 3rem;
+    font-size: 2px;
+  }
+  .details-1 {
+    right: 2rem;
+  }
+  
+  .inner-card {
+    width: 40%;
+    height: 22%;
+    margin-left: 11rem;
+  }
+  
+  .card-info {
+    font-size:16px;
+  }
+
+  .movements__date {
+    font-size: 10px;
+}
+.movements__value {
+  font-size: 14px;
+}
+
+label {
+  margin-left: -5rem;
+}
+
+.profile_form {
+  font-size: 11px;
+}
+
+.my_name {
+  font-size: 14px;
+}
+
+
+.card-number {
+  color:#fff;
+  font-size: 13px;
+  display: flex;
+  justify-content: start;
+  margin-left: 2rem;
+}
+.valid-date {
+  color:#fff;
+  font-size: 10px;
+  display: inline-block;
+  justify-content: start;
+  margin-left: 5rem;
+}
+
+.cardholder {
+  color:#fff;
+  font-size: 10px;
+  display: inline-block;
+  margin-left: 2rem;
+}
+.iban-number {
+  color:#fff;
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 2rem;
+  padding-top: 0px;
+}
+
+.card-logo {
+  margin-top: 0rem;
+  margin-left: 0rem;
+  width: 30%;
+  display: inline-block;
+}
+.debit {
+  color: #fff;
+  margin-top: 1rem;
+  margin-left: 6rem;
+  width: 14%;
+  display: inline-block;
+}
+
+.card-chip {
+  margin-left: 2rem;
+  width: 15%;
+  display: inline-block
+}
+
+.card-type {
+  display: inline-block;
+  width: 15%;
+  margin-left: 1rem;
+}
+
+.debit-text {
+  color: #fff;
+  display: inline-block;
+  margin-left: 6.5rem;
+}
+
+  }
+
+
+  @media screen and (max-width: 433px) { 
+  
+   .cards {
+      width: 90%;
+    }
+    
+  .details {
+    left: 4rem;
+  }
+  .details-1 {
+    right: 4rem;
+  }
+  
+  .card-info {
+    font-size:15px;
+  }
+
+  }
+
+

@@ -1,0 +1,249 @@
+
+
+/* INDEX RESPONSIVE  */
+
+
+@media screen and (max-width: 1440px) {
+
+  .modal__header {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .modal__form {
+    gap: 2rem;
+  }
+  
+  .modal {
+    padding: 1rem 3rem;
+  }
+  
+  .modal__form label {
+    font-size: 1.5rem;
+  }
+  
+  .modal_login {
+    padding: 4rem 3rem;
+  }
+}
+@media screen and (max-width: 1366px) {
+
+  .header__title h1 {
+    margin-left: 4rem;
+  }
+  .header__title h4 {
+    margin-left: 4rem;
+  }
+  .btn--text {
+    margin-left: 4rem;
+  }
+  .header__img {
+    margin-left: -4rem;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+
+  .nav__item {
+    margin-left: 2rem;
+}
+
+  .header__title h1 {
+    margin-left: 6rem;
+  }
+  .header__title h4 {
+    margin-left: 6rem;
+  }
+  .btn--text {
+    margin-left: 6rem;
+  }
+  .header__img {
+    margin-left: 0rem;
+    margin-top: 3rem;
+    width: 80%;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin: 0 2rem;
+}
+
+  .nav {
+  padding: 0 2rem;
+  
+  }
+
+  .nav__link:link, .nav__link:visited .nav__link--btn:link, .nav__link--btn:visited  {
+  font-size: 15px;
+ }
+
+ .modal__header {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.modal__form {
+  gap: 2rem;
+}
+
+.modal {
+  padding: 1rem 3rem;
+}
+
+.modal__form label {
+  font-size: 1.5rem;
+}
+
+.modal_login {
+  padding: 4rem 3rem;
+}
+
+}
+
+@media screen and (max-width: 992px) {
+
+  .header__img {
+    margin-left: 0rem;
+    margin-top: 6rem;
+    width: 80%;
+  }
+
+  .features {
+    gap: 4rem;
+    margin: 0 2rem;
+}
+.modal__header {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal__form {
+  gap: 2rem;
+}
+
+.modal_window {
+  padding: 1rem 3rem;
+}
+}
+
+@media screen and (max-width: 768px) {
+  .header__img {
+    display: none;
+  }
+
+  .header__title h4 {
+    margin-left: -27rem;
+    margin-top: 16rem;
+}
+
+.header__title h1 {
+  margin-right: -13rem;
+}
+.btn--text {
+  margin-left: 16rem;
+}
+
+  .features {
+    gap: 4rem;
+    margin: 0 2rem;
+}
+
+.testimonial {
+  width: 65%;
+}
+.testimonial__text {
+  font-size: 1.5rem;
+  margin-bottom: 3.3rem;
+  color: #666;
+}
+
+.slider {
+  height: 58rem;
+}
+.testimonial__header {
+  font-size: 2.1rem;
+}
+
+.slide {
+  top: 35px;
+}
+
+}
+
+@media screen and (max-width: 576px) {
+
+.header__title h1 {
+    margin: 0 6rem;
+    font-size: 5rem;
+}
+.header__title h4 {
+  margin: 0 -36rem;
+  margin-top: 23rem;
+  font-size: 1.8rem;
+}
+
+.btn--text {
+  margin-left: 15rem;
+}
+
+.features {
+    gap: 0rem;
+    margin: 0px -3rem;
+}
+.operations__tab {
+  margin-right: 0.4rem;
+}
+
+.btn {
+  font-size: 1.3rem;
+  padding: 13px 25px;
+}
+
+.operations__content {
+  padding: 1.5rem 3rem 6.5rem 3rem;
+}
+
+.testimonial {
+  width: 65%;
+}
+.testimonial__text {
+  font-size: 1.3rem;
+  margin-bottom: 3.3rem;
+  color: #666;
+}
+
+.slider {
+  height: 58rem;
+}
+.testimonial__header {
+  font-size: 2.1rem;
+}
+
+.slide {
+  top: 35px;
+}
+
+.modal__header {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal__form {
+  gap: 0.2rem;
+}
+
+.modal {
+  padding: 0.8rem 1rem;
+}
+
+.modal__form label {
+  font-size: 1.5rem;
+}
+
+.modal_window {
+  padding: 2rem 1rem;
+}
+
+}
+
