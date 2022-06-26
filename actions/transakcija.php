@@ -3,6 +3,7 @@
 if(!isset($_SESSION['userSession'])) { session_start(); }
 require_once('../actions/db.php');
 
+$mjeseci = ["Januar","Februar","Mart","April","Maj","Juni","Juli","August","Septembar","Oktobar","Novembar","Decembar"];
 
 // KREIRANJE UZORKA 
 
@@ -101,7 +102,7 @@ if(isset($_POST['brojracuna']) && isset($_POST['imeprezime']) && isset($_POST['s
         $balansupdate = $balans + $uplata - 1; 
 
         $stmtmt6 = $db->prepare("UPDATE kartice SET balans_kartice = ? WHERE iban = ?"); 
-        $stmtmt6->execute([$balansupdate, $brojracuna]); 
+        $stmtmt6->execute([$balansupdate, $brojracuna]);  
 
         $balansrazlika = $balansusera - $uplata;
 
@@ -114,20 +115,49 @@ if(isset($_POST['brojracuna']) && isset($_POST['imeprezime']) && isset($_POST['s
 
         $transakcijaisplata = "Isplata";
         $datum = date('d.m.Y');
-
         $stmtmt8->execute([$transakcijaisplata, $sumatransakcije, $datum, $idkorisnika]);  
 
         // UPLATA
  
         $getid = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
         $getid->execute([$brojracuna]);
+        $primaocid = '';
         foreach($getid as $idkorisnika) $primaocid = $idkorisnika['id_korisnika'];  
 
         $stmtmt9 = $db->prepare("INSERT INTO transakcije (tip_transakcije, suma, datum_transakcije, id_korisnika) VALUES (?, ?, ?, ?)");
-
         $transakcijauplata = "Uplata";
-
         $stmtmt9->execute([$transakcijauplata, $sumatransakcije, $datum, $primaocid]);  
+
+        // Ažuriranje analitike za primaoca
+
+        $mjesec = date('m');
+        $trimmed = '';
+        $mjesec = str_replace('0', '', $mjesec);
+        $trenutnimjesec = strtolower($mjeseci[$mjesec-1]);
+        $newvar = $trenutnimjesec.'_prihod';
+
+        $getanjeprihoda = $db->prepare("SELECT * FROM analitika WHERE id_korisnika = ?"); 
+        $getanjeprihoda->execute([$primaocid]);
+        $zadnjiprihod = '';
+        foreach($getanjeprihoda as $vrijednost) $zadnjiprihod = $vrijednost[$newvar];  
+
+        $noviprihod = (float)$zadnjiprihod + $uplata-1;
+
+        $updateprihoda = $db->prepare("UPDATE analitika SET juni_prihod = ? WHERE id_korisnika = ?"); 
+        $updateprihoda->execute([$noviprihod, $primaocid]); 
+
+        // Ažuriranje analitike za posiljaoca 
+        $newvar2 = $trenutnimjesec.'_rashod';
+
+        $getanjerashoda = $db->prepare("SELECT * FROM analitika WHERE id_korisnika = ?"); 
+        $getanjerashoda->execute([$_SESSION['clientSQLID']]);
+        $zadnjirashod = '';
+        foreach($getanjerashoda as $vrijednost) $zadnjirashod = $vrijednost[$newvar2];  
+
+        $novirashod = (float)$zadnjirashod + $uplata;
+
+        $updaterashoda = $db->prepare("UPDATE analitika SET juni_rashod = ? WHERE id_korisnika = ?"); 
+        $updaterashoda->execute([$novirashod, $_SESSION['clientSQLID']]);  
 
         if(!empty($_POST['imeuzorka'])) { 
 

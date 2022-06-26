@@ -1,7 +1,52 @@
 <?php 
     require_once('assets/top.php');
     require_once('assets/header.php');
-?> 
+?>  
+        <?php
+
+          $mjeseci = ["Januar","Februar","Mart","April","Maj","Juni","Juli","August","Septembar","Oktobar","Novembar","Decembar"];
+          $trenutnimjesec = date('m');
+          $mjesec = $mjeseci[$trenutnimjesec-1];
+
+          $prihodivar = strtolower($mjesec).'_prihod';
+          $rashodivar = strtolower($mjesec).'_rashod';
+
+          // Getanje podataka za analitiku u drugi chart
+          $getdata = $db->prepare("SELECT * FROM analitika WHERE id_korisnika = ?"); 
+          $getdata->execute([$_SESSION['clientSQLID']]); 
+          if($getdata->rowCount() != 0) { 
+            $data = $getdata->fetchAll(); 
+            foreach($data as $value) {
+              echo '<input type="hidden" id="januar_prihod" value="'.$value['januar_prihod'].'">';
+              echo '<input type="hidden" id="februar_prihod" value="'.$value['februar_prihod'].'">';
+              echo '<input type="hidden" id="mart_prihod" value="'.$value['mart_prihod'].'">';
+              echo '<input type="hidden" id="april_prihod" value="'.$value['april_prihod'].'">';
+              echo '<input type="hidden" id="maj_prihod" value="'.$value['maj_prihod'].'">';
+              echo '<input type="hidden" id="juni_prihod" value="'.$value['juni_prihod'].'">';
+              echo '<input type="hidden" id="juli_prihod" value="'.$value['juli_prihod'].'">';
+              echo '<input type="hidden" id="august_prihod" value="'.$value['august_prihod'].'">';
+              echo '<input type="hidden" id="septembar_prihod" value="'.$value['septembar_prihod'].'">';
+              echo '<input type="hidden" id="oktobar_prihod" value="'.$value['oktobar_prihod'].'">';
+              echo '<input type="hidden" id="novembar_prihod" value="'.$value['novembar_prihod'].'">';
+              echo '<input type="hidden" id="decembar_prihod" value="'.$value['decembar_prihod'].'">';
+              echo '<input type="hidden" id="januar_rashod" value="'.$value['januar_rashod'].'">';
+              echo '<input type="hidden" id="februar_rashod" value="'.$value['februar_rashod'].'">';
+              echo '<input type="hidden" id="mart_rashod" value="'.$value['mart_rashod'].'">';
+              echo '<input type="hidden" id="april_rashod" value="'.$value['april_rashod'].'">';
+              echo '<input type="hidden" id="maj_rashod" value="'.$value['maj_rashod'].'">';
+              echo '<input type="hidden" id="juni_rashod" value="'.$value['juni_rashod'].'">';
+              echo '<input type="hidden" id="juli_rashod" value="'.$value['juli_rashod'].'">';
+              echo '<input type="hidden" id="august_rashod" value="'.$value['august_rashod'].'">';
+              echo '<input type="hidden" id="septembar_rashod" value="'.$value['septembar_rashod'].'">';
+              echo '<input type="hidden" id="oktobar_rashod" value="'.$value['oktobar_rashod'].'">';
+              echo '<input type="hidden" id="novembar_rashod" value="'.$value['novembar_rashod'].'">';
+              echo '<input type="hidden" id="decembar_rashod" value="'.$value['decembar_rashod'].'">';
+
+              echo '<input type="hidden" id="mjesecni_prihod" value="'.$value[$prihodivar].'">';
+              echo '<input type="hidden" id="mjesecni_rashod" value="'.$value[$rashodivar].'">';
+            }
+          }
+        ?>
         <h2 class="wlc-title">Dobro došli u <span class="highlight" style="color:#fff;">Polo banku!</span></h2>   
         <div class="row red">
           <div class="col-3 bg-white expenses">
@@ -117,7 +162,7 @@
                       $tipkartice = 'visa.png';
                     }
                     
-                   echo '<img src="img/'.$tipkartice.'" alt="" class="card-type">';                
+                   echo '<img src="img/'.$tipkartice.'" alt="'.$tipkartice.'" class="card-type">';                
                   ?>
               </div>
             <div class="col details">

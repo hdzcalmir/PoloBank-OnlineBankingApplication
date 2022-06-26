@@ -144,6 +144,10 @@
             $stmt = $db->prepare("INSERT INTO kartice (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([$sqlid, $kartica, $noviIban, $broj_kartice, $datum_isteka, $noviPin, $balans_kartice]); 
 
+            // Kreiranje analitike za korisnika
+            $stmtanalitika = $db->prepare("INSERT INTO analitika (id_korisnika) VALUES (?)");
+            $stmtanalitika->execute([$sqlid]); 
+
             $_SESSION['userSession'] = $username;
             echo'<script>window.location="../panel.php";</script>'; 
         }  
