@@ -78,17 +78,17 @@
             return true;
         }
 
-        $datumRodjenja = $_POST['datum'];
+        // $datumRodjenja = $_POST['datum'];
 
-        $date = new DateTime($datumRodjenja);
-        $now = new DateTime();
-        $interval = $now->diff($date);
+        // $date = new DateTime($datumRodjenja);
+        // $now = new DateTime();
+        // $interval = $now->diff($date);
         
-        if($interval< 18) {
+        // if($interval< 18) {
 
-            echo'<script>window.location="../index.php";</script>';  
+        //     echo'<script>window.location="../index.php";</script>';  
 
-        } else {
+        // } else {
 
         $stmt = $db->prepare("INSERT INTO korisnici (ime_prezime, email, sifra, datum_rodjenja, grad, adresa) VALUES (?, ?, ?, ?, ?, ?)");
     
@@ -150,7 +150,7 @@
         return true;
     }
 
-}
+// }
 
     // LOGIN
   
@@ -187,7 +187,7 @@
 
             killConnection_PDO($db);
         }
-    }  
+    }
     if(isset($_GET['logout'])) {
 		if(isset($_SESSION['userSession'])) { unset($_SESSION['userSession']); session_destroy(); killConnection_PDO($db); }
         echo'<script>window.location="../index.php";</script> '; 
