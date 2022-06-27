@@ -12,14 +12,20 @@ foreach( $rowsuzorak as $row ){
 
 <form class="modal__form">
 <div>Ime i prezime</div>
-<div style="font-weight: 300;" id="ime"><?php echo $row['ime_prezime']; ?></div>
+<div style="font-weight: 300;" name="imeprimaoca"><?php echo $row['ime_prezime']; ?></div>
 <div>Broj računa</div>
-<div style="font-weight: 300;" id="racun"><?php echo $row['broj_racuna']; ?></div>
+<div style="font-weight: 300;" name="racunprimaoca"><?php echo $row['broj_racuna']; ?></div>
 <div>Suma</div>
-<div style="font-weight: 300;" id="suma" type="number" step="any"><?php echo $row['suma']; ?></div>
+<div style="font-weight: 300;" name="sumaprimaoca" type="number" step="any"><?php echo number_format((float)$row['suma'], 2, '.', ''); ?> KM</div>
 <div>Naziv uzorka</div>
-<div style="font-weight: 300;" id="naziv"><?php echo $row['ime_uzorka']; ?></div>
-<button class="btn-modal">Izvrši plaćanje &rarr;</button>
+<div style="font-weight: 300;"><?php echo $row['ime_uzorka']; ?></div>
+<button class="btn-modal" name="izvrsi">Izvrši plaćanje &rarr;</button>
 </form>
 
 <?php } ?>
+
+<?php 
+
+// IZVRSAVANJE
+
+?>

@@ -229,6 +229,9 @@ if(!empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_PO
 }
 // UZORAK MODAL
 
+// if(!isset($_REQUEST["izvrsi"])) {
+//     echo 'DA';  
+// }
 
 ?>
 
