@@ -62,11 +62,11 @@
     // LOGIN
   
     if(!empty($_POST['email_login']) && !empty($_POST['password_login'])) {
-        $email = $_POST['email_login'];
-        $password = $_POST['password_login']; 
+        $emailLogin = $_POST['email_login'];
+        $passwordLogin = $_POST['password_login']; 
 
         $statement = $db->prepare("SELECT * FROM korisnici WHERE email = ?"); 
-        $statement->execute([$email]);
+        $statement->execute([$emailLogin]);
 
         $rows = $statement->fetchAll();
         $realpwd = $name = $usermail = $stanje_racuna = '';
@@ -80,7 +80,7 @@
             
         }
 
-        if(password_verify($password, $realpwd)) {
+        if(password_verify($passwordLogin, $realpwd)) {
             $_SESSION['clientEmail'] = $usermail;
             $_SESSION['clientSQLID'] = $sqlid;
             $_SESSION['clientName'] = $name;
@@ -94,6 +94,10 @@
             killConnection_PDO($db);
         } 
     }
+
+
+    // ODJAVA
+
     if(isset($_GET['logout'])) {
 		if(isset($_SESSION['userSession'])) { unset($_SESSION['userSession']); session_destroy(); killConnection_PDO($db); }
         echo'<script>window.location="../index.php";</script> '; 
@@ -103,8 +107,10 @@
 
     // REGISTRACIJA
 
-    if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['ime_prezime']) && !empty($_POST['grad']) &&
-    !empty($_POST['adresa']) && !empty($_POST['cards']) && !empty($_POST['pin']) && !empty($_POST['datum'])) {
+
+    if(!empty($_POST['email']) && !empty($_POST['password'])) {
+
+    if(!empty($_POST['ime_prezime']) && !empty($_POST['grad']) && !empty($_POST['adresa']) && !empty($_POST['cards']) && !empty($_POST['pin']) && !empty($_POST['datum'])) {
         $password = $_POST['password']; 
         $email = $_POST['email'];
         $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -196,12 +202,15 @@
                 killConnection_PDO($db); 
 
         }
-    }
-    else {
+    }else{
         $_SESSION['fields'] = 'Molimo popunite sva polja!';
         echo'<script>window.location="../index.php";</script>';
         killConnection_PDO($db);
     }
+
+} 
+
+
 
     function createIban($br1, $br2, $br3, $br4, $br5, $br6, $br7, $br8, $br9, $br10, $br11, $br12) {
         $default = '1613';
