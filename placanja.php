@@ -189,7 +189,7 @@
 
               foreach($uzorci as $uzorak) { 
               ?>
-              <div data-target="#modalSample" class="sample__row button-modal" id="<?php echo $uzorak['id_uzorka']; ?>">
+              <div data-target="#modalSample" class="sample__row button-modal" data-id="<?php echo $uzorak['id_uzorka']; ?>">
               <div class="sample_form">Uzorak</div>
               <div class="sample"><?php echo $uzorak['ime_uzorka'] ?></div>
               </div>
@@ -232,7 +232,25 @@
     </div> -->
   	<!-- <div class="overlay hidden"></div> -->
        
-    <div class="modal_window hidden" id="modalSample">
+    <script type='text/javascript'>
+            $(document).ready(function(){
+                $('.sample__row').click(function(){
+                    let iduzorka = $(this).data('id');
+                    // alert(iduzorka);
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'post',
+                        data: {iduzorka: iduzorka},
+                        success: function(response){ 
+                            $('.body').html(response); 
+                            $('#modalSample').removeClass('hidden'); 
+                        }
+                    });
+                });
+            });
+            </script>
+
+    <div class="modal_window hidden" id="modalSample" role="dialog">
       <div class="header">
        <h2 class="modal__header">
         Detalji<span class="highlight" style="color:#fff;"> uzorka.</span>
@@ -240,29 +258,9 @@
         <button class="btn_close-modal">&times;</button>
       </div>
       <div class="body">
-      <form class="modal__form">
-          <div>Ime i prezime</div>
-          <div style="font-weight: 300;" id="ime"></div>
-          <div>Broj računa</div>
-          <div style="font-weight: 300;" id="racun"></div>
-          <div>Suma</div>
-          <div style="font-weight: 300;" id="suma" type="number" step="any"></div>
-          <div>Naziv uzorka</div>
-          <div style="font-weight: 300;" id="naziv"></div>
-        <button class="btn-modal">Izvrši plaćanje &rarr;</button>
-      </form>
       </div>
     </div>
   	<div class="overlay hidden"></div>
-
-          <!-- <script>
-                $(document).ready(function(){
-                  $('button').click(function(){
-                    $('#modalSample').modal('show');
-                  });
-                });
-
-          </script> -->
 
       <div class="modal_window hidden" id="modalnewsample">
       <div class="header">
