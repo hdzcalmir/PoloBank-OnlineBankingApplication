@@ -189,19 +189,14 @@
 
               foreach($uzorci as $uzorak) { 
               ?>
-              <div class="sample__row button-modal view_data" name="view" value="view" id="<?php echo $uzorak['id_uzorka']; ?>">
+              <div data-target="#modalSample" class="sample__row button-modal" id="<?php echo $uzorak['id_uzorka']; ?>">
               <div class="sample_form">Uzorak</div>
               <div class="sample"><?php echo $uzorak['ime_uzorka'] ?></div>
               </div>
                 
               <?php 
               }
-                
-                ?>
-
-              
-
-
+              ?>
               <!-- //   $uzorcicheck = $db->prepare("SELECT * FROM uzorci WHERE id_korisnika = ? ORDER BY id_uzorka DESC"); 
               //   $uzorcicheck->execute([$_SESSION['clientSQLID']]);
               //   $uzorci = $uzorcicheck->fetchAll(); 
@@ -217,7 +212,7 @@
               //   } -->
               
           </div>
-          <button type ="button" class="btn btn-primary bg-primary button-sample button-modal">Dodaj uzorak</button>
+          <button type ="button" class="btn btn-primary bg-primary button-sample button-modal" data-target="#modalnewsample">Dodaj uzorak</button>
         </div>
 
         <!-- <div class="modal_window hidden" id="modalpayment">
@@ -237,14 +232,14 @@
     </div> -->
   	<!-- <div class="overlay hidden"></div> -->
        
-    <div class="modal_window hidden modal" id="dataModal">
+    <div class="modal_window hidden" id="modalSample">
       <div class="header">
        <h2 class="modal__header">
         Detalji<span class="highlight" style="color:#fff;"> uzorka.</span>
        </h2>
         <button class="btn_close-modal">&times;</button>
       </div>
-      <div class="body" id="uzorak_detalji">
+      <div class="body">
       <form class="modal__form">
           <div>Ime i prezime</div>
           <div style="font-weight: 300;" id="ime"></div>
@@ -258,6 +253,16 @@
       </form>
       </div>
     </div>
+  	<div class="overlay hidden"></div>
+
+          <!-- <script>
+                $(document).ready(function(){
+                  $('button').click(function(){
+                    $('#modalSample').modal('show');
+                  });
+                });
+
+          </script> -->
 
       <div class="modal_window hidden" id="modalnewsample">
       <div class="header">
@@ -277,7 +282,7 @@
         <div>Suma</div>
         <input type="text" name="suma"/>
         <?php
-          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Ne postoji korisnik s tim brojem računa!'){
+          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Pokušajte ponovo.'){
             echo '<p class="incorrect">';
               echo $_SESSION['error'];
             echo '</p>';
@@ -290,6 +295,32 @@
               </script>
             ';
             unset($_SESSION['error']);
+          }elseif(!empty($_SESSION['errorfield']) && $_SESSION['errorfield'] == 'Molimo ispunite sva obavezna polja.'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['errorfield'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#modalnewsample").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['errorfield']);
+          }elseif(!empty($_SESSION['erroraccount']) && $_SESSION['erroraccount'] == 'Pokušajte unijeti drugi broj računa.'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['erroraccount'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#modalnewsample").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['erroraccount']);
           }
         ?>
         <button class="btn-modal">Kreiraj uzorak &rarr;</button>

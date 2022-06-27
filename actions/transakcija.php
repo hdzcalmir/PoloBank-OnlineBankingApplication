@@ -7,18 +7,20 @@ $mjeseci = ["Januar","Februar","Mart","April","Maj","Juni","Juli","August","Sept
 
 // KREIRANJE UZORKA 
 
+if(!empty($_POST['ime_prezime'])) {
 
-if(isset($_POST['ime_prezime']) && isset($_POST['broj_racuna']) && isset($_POST['ime_uzorka']) && isset($_POST['suma'])) { 
+if(!empty($_POST['broj_racuna']) && !empty($_POST['ime_uzorka']) && !empty($_POST['suma'])) { 
         $racunuzorak = $_POST['broj_racuna']; 
         $stmtmt5 = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
         $stmtmt5->execute([$racunuzorak]); 
-        if($stmtmt5->rowCount() == 0) { 
-            $_SESSION['error'] = 'Ne postoji korisnik s tim brojem računa!';
-            killConnection_PDO($db);
-            echo'<script>window.location="../placanja.php";</script>';  
-            return true;
+        if($stmtmt5->rowCount() == 1) { 
 
-        } else {
+            $brojracuna = $_POST['broj_racuna'];
+
+            $stmtmt33 = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+            $stmtmt33->execute([$_SESSION['clientSQLID']]); 
+            $racunposiljaoca = '';
+            foreach($stmtmt33 as $racun) $racunposiljaoca = $racun['iban']; 
 
             $statement15 = $db->prepare("SELECT id_korisnika FROM kartice WHERE iban = ?"); 
             $statement15->execute([$_POST['broj_racuna']]); 
@@ -31,24 +33,49 @@ if(isset($_POST['ime_prezime']) && isset($_POST['broj_racuna']) && isset($_POST[
             $rowsime1 = $statement16->fetchAll(); 
             foreach ($rowsime1 as $row) { $imeprimaoca = $row['ime_prezime']; }
 
+            if($brojracuna != $racunposiljaoca) {
             $stmtmt6 = $db->prepare("INSERT INTO uzorci (id_korisnika, ime_prezime, broj_racuna, ime_uzorka, suma) VALUES (?, ?, ?, ?, ?)");
 
             $idkorisnika = $_SESSION['clientSQLID'];
             $username = $imeprimaoca;
-            $brojracuna = $_POST['broj_racuna'];
             $imeuzorka = $_POST['ime_uzorka'];
             $suma = $_POST['suma'];
     
             $stmtmt6->execute([$idkorisnika, $username, $brojracuna, $imeuzorka, $suma]);
             killConnection_PDO($db);
             echo'<script>window.location="../placanja.php";</script>';  
-            } 
 
+            }   
+            elseif($brojracuna == $racunposiljaoca){
+                $_SESSION['erroraccount'] = 'Pokušajte unijeti drugi broj računa.';
+                killConnection_PDO($db);
+                echo'<script>window.location="../placanja.php";</script>';  
+                return true;
+                }  
+            }  else{
+                $_SESSION['error'] = 'GREŠKA! Unijeli ste nepostojeći broj računa.';
+                killConnection_PDO($db);
+                echo'<script>window.location="../placanja.php";</script>';  
+                return true;
+                }     
+    }  else{
+        $_SESSION['errorfield'] = 'Molimo ispunite sva obavezna polja.';
+        killConnection_PDO($db);
+        echo'<script>window.location="../placanja.php";</script>';  
+        return true;
+        }    
+
+}else{
+    $_SESSION['errorfield'] = 'Molimo ispunite sva obavezna polja.';
+    killConnection_PDO($db);
+    echo'<script>window.location="../placanja.php";</script>';  
+    return true;
     } 
-
 // PLACANJA - TRANSAKCIJE
 
-if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_POST['iznos_uplate'])) {
+if(!empty($_POST['brojracuna'])) {
+
+if(!empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_POST['iznos_uplate'])) {
     
 
     // Getanje broja računa kartice korisnika
@@ -143,7 +170,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
         $noviprihod = (float)$zadnjiprihod + $uplata-1;
 
-        $updateprihoda = $db->prepare("UPDATE analitika SET juni_prihod = ? WHERE id_korisnika = ?"); 
+        $updateprihoda = $db->prepare("UPDATE analitika SET $newvar = ? WHERE id_korisnika = ?"); 
         $updateprihoda->execute([$noviprihod, $primaocid]); 
 
         // Ažuriranje analitike za posiljaoca 
@@ -156,7 +183,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
         $novirashod = (float)$zadnjirashod + $uplata;
 
-        $updaterashoda = $db->prepare("UPDATE analitika SET juni_rashod = ? WHERE id_korisnika = ?"); 
+        $updaterashoda = $db->prepare("UPDATE analitika SET $newvar2 = ? WHERE id_korisnika = ?"); 
         $updaterashoda->execute([$novirashod, $_SESSION['clientSQLID']]);  
 
         if(!empty($_POST['imeuzorka'])) { 
@@ -175,13 +202,13 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
             $stmtmt6 = $db->prepare("INSERT INTO uzorci (id_korisnika, ime_prezime, broj_racuna, ime_uzorka, suma) VALUES (?, ?, ?, ?, ?)");
     
-            $idkorisnika = $_SESSION['clientSQLID'];
-            $username = $imeprimaoca1;
-            $brojracuna = $_POST['brojracuna'];
-            $imeuzorka = $_POST['imeuzorka'];
-            $suma = $_POST['iznos_uplate'];
+            $idkorisnika1 = $_SESSION['clientSQLID'];
+            $username1 = $imeprimaoca1;
+            $brojracuna1 = $_POST['brojracuna'];
+            $imeuzorka1 = $_POST['imeuzorka'];
+            $suma1 = $_POST['iznos_uplate'];
             
-            $stmtmt6->execute([$idkorisnika, $username, $brojracuna, $imeuzorka, $suma]);
+            $stmtmt6->execute([$idkorisnika1, $username1, $brojracuna1, $imeuzorka1, $suma1]);
             
             $_SESSION['successuzorak'] = 'Transakcija uspješno izvršena i uzorak kreiran!';
             killConnection_PDO($db);
@@ -199,7 +226,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
     echo'<script>window.location="../placanja.php";</script>';  
 } 
 
-
+}
 // UZORAK MODAL
 
 
