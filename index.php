@@ -356,7 +356,7 @@
             session_destroy();
           }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Molimo popunite sva polja!'){
             echo '<p class="incorrect">';
-              echo $_SESSION['fields'];
+              echo $_SESSION['error'];
             echo '</p>'; 
 
             echo '
@@ -379,13 +379,26 @@
       <h2 class="modal__header">
         Ulogujte<span class="highlight" style="color:#fff;"> se.</span>
       </h2>
-      <form class="modal__form" action="actions/podaci.php" method="POST">
+      <form class="modal__form" action="actions/login.php" method="POST">
         <label>Email</label>
         <input type="email" name="email_login"/>
         <label>Šifra</label>
         <input type="password" name="password_login" />
         <?php  
           if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Vaš email ili lozinka nisu validni, pokušajte ponovo.'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['error'];
+            echo '</p>'; 
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#login").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            session_destroy();
+          } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Unesite Vaše podatke!'){
             echo '<p class="incorrect">';
               echo $_SESSION['error'];
             echo '</p>'; 
