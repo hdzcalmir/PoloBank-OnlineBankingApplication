@@ -5,77 +5,10 @@ require_once('../actions/db.php');
 
 $mjeseci = ["Januar","Februar","Mart","April","Maj","Juni","Juli","August","Septembar","Oktobar","Novembar","Decembar"];
 
-// KREIRANJE UZORKA 
-
-if(!empty($_POST['ime_prezime'])) {
-
-if(!empty($_POST['broj_racuna']) && !empty($_POST['ime_uzorka']) && !empty($_POST['suma'])) { 
-        $racunuzorak = $_POST['broj_racuna']; 
-        $stmtmt5 = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
-        $stmtmt5->execute([$racunuzorak]); 
-        if($stmtmt5->rowCount() == 1) { 
-
-            $brojracuna = $_POST['broj_racuna'];
-
-            $stmtmt33 = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
-            $stmtmt33->execute([$_SESSION['clientSQLID']]); 
-            $racunposiljaoca = '';
-            foreach($stmtmt33 as $racun) $racunposiljaoca = $racun['iban']; 
-
-            $statement15 = $db->prepare("SELECT id_korisnika FROM kartice WHERE iban = ?"); 
-            $statement15->execute([$_POST['broj_racuna']]); 
-            $rowsime = $statement15->fetchAll(); 
-            $idprimaoca = ''; 
-            foreach ($rowsime as $row) { $idprimaoca = $row['id_korisnika']; }
-
-            $statement16 = $db->prepare("SELECT ime_prezime FROM korisnici WHERE id_korisnika = ?"); 
-            $statement16->execute([$idprimaoca]); 
-            $rowsime1 = $statement16->fetchAll(); 
-            foreach ($rowsime1 as $row) { $imeprimaoca = $row['ime_prezime']; }
-
-            if($brojracuna != $racunposiljaoca) {
-            $stmtmt6 = $db->prepare("INSERT INTO uzorci (id_korisnika, ime_prezime, broj_racuna, ime_uzorka, suma) VALUES (?, ?, ?, ?, ?)");
-
-            $idkorisnika = $_SESSION['clientSQLID'];
-            $username = $imeprimaoca;
-            $imeuzorka = $_POST['ime_uzorka'];
-            $suma = $_POST['suma'];
-    
-            $stmtmt6->execute([$idkorisnika, $username, $brojracuna, $imeuzorka, $suma]);
-            killConnection_PDO($db);
-            echo'<script>window.location="../placanja.php";</script>';  
-
-            }   
-            elseif($brojracuna == $racunposiljaoca){
-                $_SESSION['erroraccount'] = 'Pokušajte unijeti drugi broj računa.';
-                killConnection_PDO($db);
-                echo'<script>window.location="../placanja.php";</script>';  
-                return true;
-                }  
-            }  else{
-                $_SESSION['error'] = 'GREŠKA! Unijeli ste nepostojeći broj računa.';
-                killConnection_PDO($db);
-                echo'<script>window.location="../placanja.php";</script>';  
-                return true;
-                }     
-    }  else{
-        $_SESSION['errorfield'] = 'Molimo ispunite sva obavezna polja.';
-        killConnection_PDO($db);
-        echo'<script>window.location="../placanja.php";</script>';  
-        return true;
-        }    
-
-}else{
-    $_SESSION['errorfield'] = 'Molimo ispunite sva obavezna polja.';
-    killConnection_PDO($db);
-    echo'<script>window.location="../placanja.php";</script>';  
-    return true;
-    } 
 // PLACANJA - TRANSAKCIJE
 
-if(!empty($_POST['brojracuna'])) {
 
-if(!empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_POST['iznos_uplate'])) {
+if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_POST['iznos_uplate'])) {
     
 
     // Getanje broja računa kartice korisnika
@@ -95,6 +28,9 @@ if(!empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_PO
     $brojracuna = $_POST['brojracuna'];
     $stmtmt6 = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
     $stmtmt6->execute([$brojracuna]); 
+
+
+
     if($stmtmt6->rowCount() == 0) { 
         $_SESSION['erroraccount'] = 'GREŠKA! Pokušajte ponovo.';
         killConnection_PDO($db);
@@ -220,18 +156,12 @@ if(!empty($_POST['imeprezime']) && !empty($_POST['svrha_uplate']) && !empty($_PO
             echo'<script>window.location="../placanja.php";</script>';  
         }
     }
-}  else {
+}  elseif(empty($_POST['brojracuna']) || empty($_POST['imeprezime']) || empty($_POST['svrha_uplate']) || empty($_POST['iznos_uplate'])) {
     $_SESSION['fail'] = 'Niste unijeli neko od obaveznih polja!';
     killConnection_PDO($db);
     echo'<script>window.location="../placanja.php";</script>';  
 } 
 
-}
-// UZORAK MODAL
-
-// if(!isset($_REQUEST["izvrsi"])) {
-//     echo 'DA';  
-// }
 
 ?>
 

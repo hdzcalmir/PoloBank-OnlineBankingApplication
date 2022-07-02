@@ -63,7 +63,14 @@
                 <div class="col col_form">Ime i prezime</div> 
               </div>
               <div class="col col_input" >
-              <input type="text" placeholder="Ime primaoca" class="transaction_acc radius" name="imeprezime">
+                <script>
+                </script>
+              <input type="text" placeholder="Ime primaoca" value ="<?php if(!isset($_SESSION['imeprimaoca'])) {
+                echo '';
+               }else {
+                echo $_SESSION['imeprimaoca'];
+                unset($_SESSION['imeprimaoca']); 
+               }?>" class="transaction_acc radius" name="imeprezime">
               </div>
             </div>
             <div class="transactions__row">
@@ -71,7 +78,12 @@
                 <div class="col col_form">Na račun</div> 
               </div>
               <div class="col col_input" >
-              <input type="number" placeholder="Broj računa" class="transaction_acc radius" name="brojracuna">
+              <input type="number" placeholder="Broj računa" class="transaction_acc radius" value ="<?php if(!isset($_SESSION['racunprimaoca'])) {
+                echo '';
+               }else {
+                echo $_SESSION['racunprimaoca'];
+                unset($_SESSION['racunprimaoca']); 
+               }?>" name="brojracuna">
               </div>
             </div>
             <div class="transactions__row">
@@ -79,7 +91,12 @@
               <div class="col col_form"> Iznos </div>
               </div>
               <div class="col col_input" >
-              <input type="number" placeholder="BAM" class="transaction_acc radius" name="iznos_uplate" step="any">
+              <input type="number" placeholder="BAM" class="transaction_acc radius" name="iznos_uplate" step="any" value ="<?php if(!isset($_SESSION['sumaprimaoca'])) {
+                echo '';
+               }else {
+                echo number_format((float)$_SESSION['sumaprimaoca'], 2, '.', ''); 
+                unset($_SESSION['sumaprimaoca']); 
+               }?>">
               </div>
             </div>
             <div class="transactions__row">
@@ -163,7 +180,7 @@
             </script>
           ';
           unset($_SESSION['successuzorak']);
-          } elseif(!empty($_SESSION['fail']) == 'Morate ispuniti sva obavezna polja!') {
+          } elseif(!empty($_SESSION['fail']) && $_SESSION['fail'] == 'Niste unijeli neko od obaveznih polja!') {
             echo '<p class="incorrectpym">';
             echo $_SESSION['fail'];
           echo '</p>';
@@ -197,20 +214,6 @@
               <?php 
               }
               ?>
-              <!-- //   $uzorcicheck = $db->prepare("SELECT * FROM uzorci WHERE id_korisnika = ? ORDER BY id_uzorka DESC"); 
-              //   $uzorcicheck->execute([$_SESSION['clientSQLID']]);
-              //   $uzorci = $uzorcicheck->fetchAll(); 
-
-              //   foreach($uzorci as $uzorak) { 
-              //     $imeuzorka = $uzorak['ime_uzorka']; 
-
-              // echo '<div class="sample__row button-modal" data-target="#modalsample">';
-              // echo '<div class="sample_form">Uzorak</div>';
-              // echo '<div class="sample">'.$imeuzorka.'</div>';
-              // echo '</div>';   
-
-              //   } -->
-              
           </div>
           <button type ="button" class="btn btn-primary bg-primary button-sample button-modal" data-target="#modalnewsample">Dodaj uzorak</button>
         </div>
@@ -262,6 +265,9 @@
     </div>
   	<div class="overlay hidden"></div>
 
+
+    <!-- MODAL ZA DODAVANJE UZORAKA -->
+    
       <div class="modal_window hidden" id="modalnewsample">
       <div class="header">
       <h2 class="modal__header">
@@ -270,7 +276,7 @@
         <button class="btn_close-modal">&times;</button>
       </div>
       <div class="body">
-      <form class="modal__form" action="actions/transakcija.php" method="post">
+      <form class="modal__form" action="actions/uzorak.php" method="post">
         <div>Ime i prezime</div>
         <input type="text" name="ime_prezime"/>
         <div>Broj računa</div>
