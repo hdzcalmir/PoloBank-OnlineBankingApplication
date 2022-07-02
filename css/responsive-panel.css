@@ -37,6 +37,10 @@
   
   @media screen and (max-width: 1199px) { 
 
+    .rates {
+      flex: 0 0 100%;
+  }
+
     .modal__form {
       margin: 0 2rem;
       gap: 2rem;
@@ -126,11 +130,23 @@
 
 @media screen and (max-width: 768px) { 
 
+  .profile_form {
+    font-size: 12px;
+}
+
+  .transactions, .expenses {
+    flex: 0 0 70%;
+}
   .modal__header {
     font-size: 1.5rem;
 }
 .card-heading {
   margin: -3px 6px;
+  font-size: 20px;
+}
+
+.movements__value {
+  font-size: 14px;
 }
 
 .movements__row {
@@ -186,6 +202,15 @@
     width: 75%;
   }
   
+  .card-heading {
+    margin: -3px 0px;
+    font-size: 20px;
+}
+
+  .movements__date {
+    display: none;
+  }
+
   .details {
     left: 3rem;
     font-size: 2px;
@@ -204,9 +229,6 @@
     font-size:16px;
   }
 
-  .movements__date {
-    font-size: 10px;
-}
 .movements__value {
   font-size: 14px;
 }
@@ -304,6 +326,10 @@ label {
   .card-info {
     font-size:15px;
   }
+
+  .movements-index {
+    height: 220px;
+}
 
   }
 
