@@ -1,9 +1,15 @@
 <?php
 
-// if(!isset($_SESSION['userSession'])) { session_start(); }
-// require_once('../actions/db.php');
+if(!isset($_SESSION['userSession'])) { session_start(); }
+require_once('../actions/db.php');
 
 // // KREIRANJE UZORKA 
+
+if(!empty($_POST['imeuzorak']) && !empty($_POST['racunuzorak']) && !empty($_POST['nazivuzorak']) && !empty($_POST['sumauzorak'])) {
+ 
+                echo'<script>window.location="../vise.php";</script>';  
+
+}
 
 
 // if(!empty($_POST['ime_prezime']) && !empty($_POST['broj_racuna']) && !empty($_POST['ime_uzorka']) && !empty($_POST['suma'])) { 

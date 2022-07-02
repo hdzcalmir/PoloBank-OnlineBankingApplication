@@ -218,28 +218,13 @@
           <button type ="button" class="btn btn-primary bg-primary button-sample button-modal" data-target="#modalnewsample">Dodaj uzorak</button>
         </div>
 
-        <!-- <div class="modal_window hidden" id="modalpayment">
-      <div class="header">
-      <h2 class="modal__header">
-        Potvrda<span class="highlight" style="color:#fff;"> transakcije.</span>
-      </h2>
-        <button class="btn_close-modal">&times;</button>
-      </div>
-      <div class="body">
-      <form class="modal__form">
-        <div>Unesite PIN</div>
-        <input type="number" name="potvrda"/>
-        <button class="btn-modal">Potvrdi &rarr;</button>
-      </form>
-      </div>
-    </div> -->
-  	<!-- <div class="overlay hidden"></div> -->
-       
+
+        <!-- DINAMICKI PRIKAZ MODALA - ajax -->
+    
     <script type='text/javascript'>
             $(document).ready(function(){
                 $('.sample__row').click(function(){
                     let iduzorka = $(this).data('id');
-                    // alert(iduzorka);
                     $.ajax({
                         url: 'ajax.php',
                         type: 'post',
@@ -251,9 +236,21 @@
                     });
                 });
             });
-            </script>
+      </script>
 
-    <div class="modal_window hidden" id="modalSample" role="dialog">
+    <script>
+
+      $('#modalSample').on('hidden.bs.modal', function () {
+          $(this).find('body').trigger('reset');
+      });
+
+      $('#modalample').on('hidden.bs.modal', function () {
+          $(this).find('body').trigger('reset');
+      });
+          
+    </script>
+
+    <div class="modal_window hidden" id="modalSample">
       <div class="header">
        <h2 class="modal__header">
         Detalji<span class="highlight" style="color:#fff;"> uzorka.</span>
@@ -278,55 +275,13 @@
       <div class="body">
       <form class="modal__form" action="actions/uzorak.php" method="post">
         <div>Ime i prezime</div>
-        <input type="text" name="ime_prezime"/>
+        <input type="text" name="imeuzorak"/>
         <div>Broj računa</div>
-        <input type="text" name="broj_racuna"/>
+        <input type="number" name="racunuzorak"/>
         <div>Naziv uzorka</div>
-        <input type="text" name="ime_uzorka"/>
+        <input type="text" name="nazivuzorak"/>
         <div>Suma</div>
-        <input type="text" name="suma"/>
-        <?php
-          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Pokušajte ponovo.'){
-            echo '<p class="incorrect">';
-              echo $_SESSION['error'];
-            echo '</p>';
-
-            echo '
-              <script>
-                document.querySelector(".incorrect").style.display = "block";
-                document.querySelector("#modalnewsample").classList.remove("hidden");
-                document.querySelector(".overlay").classList.remove("hidden");
-              </script>
-            ';
-            unset($_SESSION['error']);
-          }elseif(!empty($_SESSION['errorfield']) && $_SESSION['errorfield'] == 'Molimo ispunite sva obavezna polja.'){
-            echo '<p class="incorrect">';
-              echo $_SESSION['errorfield'];
-            echo '</p>';
-
-            echo '
-              <script>
-                document.querySelector(".incorrect").style.display = "block";
-                document.querySelector("#modalnewsample").classList.remove("hidden");
-                document.querySelector(".overlay").classList.remove("hidden");
-              </script>
-            ';
-            unset($_SESSION['errorfield']);
-          }elseif(!empty($_SESSION['erroraccount']) && $_SESSION['erroraccount'] == 'Pokušajte unijeti drugi broj računa.'){
-            echo '<p class="incorrect">';
-              echo $_SESSION['erroraccount'];
-            echo '</p>';
-
-            echo '
-              <script>
-                document.querySelector(".incorrect").style.display = "block";
-                document.querySelector("#modalnewsample").classList.remove("hidden");
-                document.querySelector(".overlay").classList.remove("hidden");
-              </script>
-            ';
-            unset($_SESSION['erroraccount']);
-          }
-        ?>
+        <input type="number" name="sumauzorak"/>
         <button class="btn-modal">Kreiraj uzorak &rarr;</button>
       </form>
       </div>
