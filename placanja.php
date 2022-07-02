@@ -78,7 +78,7 @@
                 <div class="col col_form">Na račun</div> 
               </div>
               <div class="col col_input" >
-              <input type="number" placeholder="Broj računa" class="transaction_acc radius" value ="<?php if(!isset($_SESSION['racunprimaoca'])) {
+              <input type="number" placeholder="Broj računa" id="racun" class="transaction_acc radius" value ="<?php if(!isset($_SESSION['racunprimaoca'])) {
                 echo '';
                }else {
                 echo $_SESSION['racunprimaoca'];
@@ -125,9 +125,9 @@
             </div>
             </div>
            <?php
-          if(!empty($_SESSION['erroraccount']) && $_SESSION['erroraccount'] == 'GREŠKA! Pokušajte ponovo.'){
+          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Pokušajte ponovo.'){
             echo '<p class="incorrectpym">';
-              echo $_SESSION['erroraccount'];
+              echo $_SESSION['error'];
             echo '</p>';
 
             echo '
@@ -135,7 +135,7 @@
                 document.querySelector(".incorrectpym").style.display = "block";
               </script>
             ';
-            unset($_SESSION['erroraccount']);
+            unset($_SESSION['error']);
           } elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Transakcija uspješno izvršena!') {
             echo '<p class="successpym">';
             echo $_SESSION['success'];
@@ -147,9 +147,9 @@
             </script>
           ';
           unset($_SESSION['success']);
-          } elseif(!empty($_SESSION['erroruser']) && $_SESSION['erroruser'] == 'GREŠKA! Pokušajte unijeti drugi broj računa.') {
+          } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Pokušajte unijeti drugi broj računa.') {
             echo '<p class="incorrectpym">';
-            echo $_SESSION['erroruser'];
+            echo $_SESSION['error'];
           echo '</p>';
 
           echo '
@@ -157,8 +157,8 @@
               document.querySelector(".incorrectpym").style.display = "block";
             </script>
           ';
-          unset($_SESSION['erroruser']);
-          } elseif(!empty($_SESSION['errorbalance']) && $_SESSION['errorbalance'] == 'GREŠKA! Nedovoljno sredstava na računu.') {
+          unset($_SESSION['error']);
+          } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Nedovoljno sredstava na računu.') {
             echo '<p class="incorrectpym">';
             echo $_SESSION['errorbalance'];
           echo '</p>';
@@ -168,10 +168,10 @@
               document.querySelector(".incorrectpym").style.display = "block";
             </script>
           ';
-          unset($_SESSION['errorbalance']);
-          } elseif(!empty($_SESSION['successuzorak']) && $_SESSION['successuzorak'] == 'Transakcija uspješno izvršena i uzorak kreiran!') {
+          unset($_SESSION['error']);
+          } elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Transakcija uspješno izvršena i uzorak kreiran!') {
             echo '<p class="successpym">';
-            echo $_SESSION['successuzorak'];
+            echo $_SESSION['success'];
           echo '</p>';
 
           echo '
@@ -179,17 +179,17 @@
               document.querySelector(".successpym").style.display = "block";
             </script>
           ';
-          unset($_SESSION['successuzorak']);
-          } elseif(!empty($_SESSION['fail']) && $_SESSION['fail'] == 'Niste unijeli neko od obaveznih polja!') {
+          unset($_SESSION['success']);
+          } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Niste unijeli neko od obaveznih polja!') {
             echo '<p class="incorrectpym">';
-            echo $_SESSION['fail'];
+            echo $_SESSION['error'];
           echo '</p>';
           echo '
           <script>
             document.querySelector(".incorrectpym").style.display = "block";
           </script>
         ';
-        unset($_SESSION['fail']);
+        unset($_SESSION['error']);
           }
         ?> 
             <button class="btn btn-primary bg-primary button-payment modal-button">Plati</button>
@@ -230,7 +230,7 @@
                         type: 'post',
                         data: {iduzorka: iduzorka},
                         success: function(response){ 
-                            $('.body').html(response); 
+                            $('.body_sample').html(response); 
                             $('#modalSample').removeClass('hidden'); 
                         }
                     });
@@ -238,17 +238,6 @@
             });
       </script>
 
-    <script>
-
-      $('#modalSample').on('hidden.bs.modal', function () {
-          $(this).find('body').trigger('reset');
-      });
-
-      $('#modalample').on('hidden.bs.modal', function () {
-          $(this).find('body').trigger('reset');
-      });
-          
-    </script>
 
     <div class="modal_window hidden" id="modalSample">
       <div class="header">
@@ -257,7 +246,7 @@
        </h2>
         <button class="btn_close-modal">&times;</button>
       </div>
-      <div class="body">
+      <div class="body_sample">
       </div>
     </div>
   	<div class="overlay hidden"></div>

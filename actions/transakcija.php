@@ -32,19 +32,19 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
 
     if($stmtmt6->rowCount() == 0) { 
-        $_SESSION['erroraccount'] = 'GREŠKA! Pokušajte ponovo.';
+        $_SESSION['error'] = 'GREŠKA! Pokušajte ponovo.';
         killConnection_PDO($db);
         echo'<script>window.location="../placanja.php";</script>';  
         return true;
 
     } elseif($balansusera < $_POST['iznos_uplate'] + 1) {
-        $_SESSION['errorbalance'] = 'GREŠKA! Nedovoljno sredstava na računu.';
+        $_SESSION['error'] = 'GREŠKA! Nedovoljno sredstava na računu.';
         killConnection_PDO($db);
         echo'<script>window.location="../placanja.php";</script>';  
         return true;
 
     } elseif($brojracuna == $broj_kartice) {
-        $_SESSION['erroruser'] = 'GREŠKA! Pokušajte unijeti drugi broj računa.';
+        $_SESSION['error'] = 'GREŠKA! Pokušajte unijeti drugi broj računa.';
         killConnection_PDO($db);
         echo'<script>window.location="../placanja.php";</script>';  
         return true;
@@ -146,7 +146,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
             
             $stmtmt6->execute([$idkorisnika1, $username1, $brojracuna1, $imeuzorka1, $suma1]);
             
-            $_SESSION['successuzorak'] = 'Transakcija uspješno izvršena i uzorak kreiran!';
+            $_SESSION['success'] = 'Transakcija uspješno izvršena i uzorak kreiran!';
             killConnection_PDO($db);
             echo'<script>window.location="../placanja.php";</script>';  
     
@@ -157,7 +157,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
         }
     }
 }  elseif(empty($_POST['brojracuna']) || empty($_POST['imeprezime']) || empty($_POST['svrha_uplate']) || empty($_POST['iznos_uplate'])) {
-    $_SESSION['fail'] = 'Niste unijeli neko od obaveznih polja!';
+    $_SESSION['error'] = 'Niste unijeli neko od obaveznih polja!';
     killConnection_PDO($db);
     echo'<script>window.location="../placanja.php";</script>';  
 } 

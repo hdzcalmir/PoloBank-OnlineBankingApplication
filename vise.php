@@ -139,7 +139,7 @@
           </div>
         </div>
 
-      <!-- PIN CHANGE -->
+      <!-- PROMJENA PINA -->
 
       <div class="overlay hidden"></div>
 
