@@ -18,7 +18,7 @@ foreach( $rowsuzorak as $row ){
 <div>Broj računa</div>
 <div style="font-weight: 300;" value="<?php echo $row['broj_racuna']; ?>" name="racunprimaoca"><?php echo $row['broj_racuna']; ?></div>
 <div>Suma</div>
-<div style="font-weight: 300;" value="<?php echo $row['suma']; ?>" name="sumaprimaoca" type="number" step="any"><?php echo number_format((float)$row['suma'], 2, '.', ''); ?> KM</div>
+<div style="font-weight: 300;" value="<?php echo $row['suma']; ?>" name="sumaprimaoca" type="number" step="any"><?php echo number_format((float)$row['suma'], 2, '.', ','); ?> KM</div>
 <div>Naziv uzorka</div>
 <div style="font-weight: 300;" value="<?php echo $row['ime_uzorka']; ?>" name="imeuzorka"><?php echo $row['ime_uzorka']; ?></div>
 <button class="btn-modal" name="izvrsi">Izvrši plaćanje &rarr;</button>

@@ -28,7 +28,7 @@
                 echo '</div>';
                 echo '<div class="col col_input">';
                 echo '<div class="movements__value">';
-                echo number_format((float)$transakcija['suma'], 2, '.', ''); 
+                echo number_format((float)$transakcija['suma'], 2, '.', ','); 
                 echo ' KM</div>';
                 echo '</div>';
                 echo '</div>';
@@ -181,6 +181,16 @@
           ';
           unset($_SESSION['success']);
           } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Niste unijeli neko od obaveznih polja!') {
+            echo '<p class="incorrectpym">';
+            echo $_SESSION['error'];
+          echo '</p>';
+          echo '
+          <script>
+            document.querySelector(".incorrectpym").style.display = "block";
+          </script>
+        ';
+        unset($_SESSION['error']);
+          } elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Maksimalna suma po transakciji je 2000KM.') {
             echo '<p class="incorrectpym">';
             echo $_SESSION['error'];
           echo '</p>';

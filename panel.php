@@ -75,7 +75,7 @@
                 echo '<div class="movements__type movements__type--'.$tipboja.'">'.$tiptransakcije.'</div>';
                 echo '<div class="movements__date">'.$datum.'</div>';
                 echo '<div class="movements__value">';
-                echo number_format((float)$transakcija['suma'], 2, '.', ''); 
+                echo number_format((float)$transakcija['suma'], 2, '.', ','); 
                 echo ' KM</div>';
                 echo '</div>';
               } 
@@ -205,7 +205,7 @@
                   foreach ($rows as $row) { $stanje_racuna = $row['stanje_racuna'];}
 
                if($stanje_racuna == 0) {
-                echo number_format((float)$balans, 2, '.', '');  
+                echo number_format((float)$balans, 2, '.', ',');  
                 } else { echo '';}
                   echo' KM</div>';
                   echo '<div class="row card-info text-card-7">Aktivna</div>

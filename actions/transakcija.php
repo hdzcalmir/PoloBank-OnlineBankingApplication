@@ -48,6 +48,12 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
         killConnection_PDO($db);
         echo'<script>window.location="../placanja.php";</script>';  
         return true;
+
+    } elseif($_POST['iznos_uplate'] > 2000) {
+        $_SESSION['error'] = 'GREŠKA! Maksimalna suma po transakciji je 2000KM.';
+        killConnection_PDO($db);
+        echo'<script>window.location="../placanja.php";</script>';  
+        return true;
     }
     
     
