@@ -271,6 +271,45 @@
         <input type="text" name="nazivuzorak"/>
         <div>Suma</div>
         <input type="number" name="sumauzorak" step="any"/>
+        <?php
+         if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Pokušajte unijeti drugi broj računa.') {
+          echo '<p class="incorrect">';
+          echo $_SESSION['error'];
+          echo '</p>';
+          echo '
+        <script>
+        document.querySelector(".incorrect").style.display = "block";
+        document.querySelector("#modalnewsample").classList.remove("hidden");
+        document.querySelector(".overlay").classList.remove("hidden");
+        </script> 
+      ';
+      unset($_SESSION['error']);
+        }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Ispunite sva polja.') {
+          echo '<p class="incorrect">';
+          echo $_SESSION['error'];
+          echo '</p>';
+          echo '
+        <script>
+        document.querySelector(".incorrect").style.display = "block";
+        document.querySelector("#modalnewsample").classList.remove("hidden");
+        document.querySelector(".overlay").classList.remove("hidden");
+        </script> 
+      ';
+      unset($_SESSION['error']);
+        }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Unijeli ste nepostojeći broj računa.') {
+          echo '<p class="incorrect">';
+          echo $_SESSION['error'];
+          echo '</p>';
+          echo '
+        <script>
+        document.querySelector(".incorrect").style.display = "block";
+        document.querySelector("#modalnewsample").classList.remove("hidden");
+        document.querySelector(".overlay").classList.remove("hidden");
+        </script> 
+      ';
+      unset($_SESSION['error']);
+        }
+        ?>
         <button class="btn-modal">Kreiraj uzorak &rarr;</button>
       </form>
       </div>
