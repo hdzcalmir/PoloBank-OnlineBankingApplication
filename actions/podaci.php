@@ -2,62 +2,6 @@
     if(!isset($_SESSION['userSession'])) { session_start(); }
     require_once('../actions/db.php');
 
-    // PROMJENA SIFRE
-    
-    if(!empty($_POST['oldpass']) && !empty($_POST['newpass']) && !empty($_POST['newpassagain'])) { 
-      $oldpassword = $_POST['oldpass']; 
-      $newpassword = $_POST['newpass'];
-      $newpasswordagain = $_POST['newpassagain'];
-
-      $sifracheck = $db->prepare("SELECT sifra FROM korisnici WHERE id_korisnika = ?"); 
-      $sifracheck->execute([$_SESSION['clientSQLID']]);
-      $rows = $sifracheck->fetchAll(); 
-      $password = '';
-
-      foreach ($rows as $row) { $password = $row['sifra']; }
-
-      if (password_verify($oldpassword, $password)) {
-        $hash = password_hash($newpassword, PASSWORD_BCRYPT);
-        if($newpassword == $newpasswordagain) {
-          $sifraupdate = $db->prepare("UPDATE korisnici SET sifra = :sifra WHERE id_korisnika = :sqlid"); 
-          $sifraupdate->bindParam(':sifra', $hash, PDO::PARAM_STR);
-          $sifraupdate->bindParam(':sqlid', $_SESSION['clientSQLID'], PDO::PARAM_INT);
-          $sifraupdate->execute();      
-          echo'<script>window.location="../vise.php";</script>';
-        }
-      } else {  
-            $_SESSION['error'] = 'Pogriješili ste šifru, pokušajte ponovo.';
-            echo'<script>window.location="../vise.php";</script>';  
-        }
-    }
-
-    // PROMJENA PINA
-    
-    if(!empty($_POST['oldpin']) && !empty($_POST['newpin']) && !empty($_POST['newpinagain'])) { 
-      $oldpin = $_POST['oldpin']; 
-      $newpin = $_POST['newpin'];
-      $newpinagain = $_POST['newpinagain'];
-
-      $pincheck = $db->prepare("SELECT pin FROM kartice WHERE id_korisnika = ?"); 
-      $pincheck->execute([$_SESSION['clientSQLID']]);
-      $rows = $pincheck->fetchAll(); 
-      $pin = '';
-
-      foreach ($rows as $row) { $pin = $row['pin']; }
-
-      if ($oldpin ==  $pin) {
-        if($newpin == $newpinagain) {
-          $pinupdate = $db->prepare("UPDATE kartice SET pin = :pin WHERE id_korisnika = :sqlid"); 
-          $pinupdate->bindParam(':pin', $newpin, PDO::PARAM_STR);
-          $pinupdate->bindParam(':sqlid', $_SESSION['clientSQLID'], PDO::PARAM_INT);
-          $pinupdate->execute();     
-          echo'<script>window.location="../vise.php";</script>';   
-         }
-      } else {  
-            $_SESSION['error'] = 'Pogriješili ste pin, pokušajte ponovo.';
-            echo'<script>window.location="../vise.php";</script>';  
-        } 
-    } 
 
     // ODJAVA
 
@@ -71,9 +15,7 @@
     // REGISTRACIJA
 
 
-    if(!empty($_POST['email']) && !empty($_POST['password'])) {
-
-    if(!empty($_POST['ime_prezime']) && !empty($_POST['grad']) && !empty($_POST['adresa']) && !empty($_POST['cards']) && !empty($_POST['pin']) && !empty($_POST['datum'])) {
+    if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['ime_prezime']) && !empty($_POST['grad']) && !empty($_POST['adresa']) && !empty($_POST['cards']) && !empty($_POST['pin']) && !empty($_POST['datum'])) {
         $password = $_POST['password']; 
         $email = $_POST['email'];
         $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -171,11 +113,6 @@
         killConnection_PDO($db);
     }
 
-} else{
-    $_SESSION['error'] = 'Molimo popunite sva polja!';
-    echo'<script>window.location="../index.php";</script>';
-    killConnection_PDO($db);
-}
 
 
     function createIban($br1, $br2, $br3, $br4, $br5, $br6, $br7, $br8, $br9, $br10, $br11, $br12) {

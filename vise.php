@@ -150,7 +150,7 @@
       </h2>
         <button class="btn_close-modal">&times;</button>
       </div>
-      <form class="modal__form" action="actions/podaci.php" method="POST">
+      <form class="modal__form" action="actions/pin.php" method="POST">
         <div>Stari pin</div>
         <input type="password" pattern="[0-9]*" inputmode="numeric" name="oldpin" minlength="4" maxlength="4"/>
         <div>Novi pin</div>
@@ -171,6 +171,32 @@
               </script>
             ';
             unset($_SESSION['error']);
+          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Niste unijeli pin.'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['error'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#modalpin").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['error']);
+          }elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Uspješno ste promijenili pin.'){
+            echo '<p class="success">';
+              echo $_SESSION['success'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".success").style.display = "block";
+                document.querySelector("#modalpin").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['success']);
           }
         ?>
         <button class="btn-modal">Potvrdi &rarr;</button>
@@ -186,7 +212,7 @@
       </h2>
         <button class="btn_close-modal">&times;</button>
       </div>
-      <form class="modal__form" action="actions/podaci.php" method="POST">
+      <form class="modal__form" action="actions/sifra.php" method="POST">
         <div>Stara šifra</div>
         <input type="password" name="oldpass" minlength="8"/>
         <div>Nova šifra</div>
@@ -207,6 +233,32 @@
               </script>
             ';
             unset($_SESSION['error']);
+          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Niste unijeli šifru.'){
+            echo '<p class="incorrect">';
+              echo $_SESSION['error'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".incorrect").style.display = "block";
+                document.querySelector("#modalpass").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['error']);
+          }elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Uspješno ste promijenili šifru.'){
+            echo '<p class="success">';
+              echo $_SESSION['success'];
+            echo '</p>';
+
+            echo '
+              <script>
+                document.querySelector(".success").style.display = "block";
+                document.querySelector("#modalpass").classList.remove("hidden");
+                document.querySelector(".overlay").classList.remove("hidden");
+              </script>
+            ';
+            unset($_SESSION['success']);
           }
         ?>
         <button class="btn-modal">Potvrdi &rarr;</button>
