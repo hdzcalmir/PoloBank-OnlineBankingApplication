@@ -197,13 +197,13 @@
             }
         return true;
         }  else {
-            $_SESSION['year'] = 'Morate imati 18 ili više godina da biste otvorili račun!';
+            $_SESSION['error'] = 'Morate imati 18 ili više godina da biste otvorili račun!';
                 echo'<script>window.location="../index.php";</script>';
                 killConnection_PDO($db); 
 
         }
     }else{
-        $_SESSION['fields'] = 'Molimo popunite sva polja!';
+        $_SESSION['error'] = 'Molimo popunite sva polja!';
         echo'<script>window.location="../index.php";</script>';
         killConnection_PDO($db);
     }

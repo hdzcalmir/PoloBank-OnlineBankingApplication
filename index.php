@@ -324,7 +324,7 @@
         <option value="Visa">Visa</option>
         </select>
         <label>Šifra</label>
-        <input type="password" name="password" />
+        <input type="password" name="password" minlength="8"/>
         <label>PIN</label>
         <input type="password" pattern="[0-9]*" inputmode="numeric" name="pin" minlength="4" maxlength="4"/>
         <?php
@@ -341,9 +341,9 @@
               </script>
             ';
             session_destroy();
-          }elseif(!empty($_SESSION['year']) && $_SESSION['year'] == 'Morate imati 18 ili više godina da biste otvorili račun!'){
+          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Morate imati 18 ili više godina da biste otvorili račun!'){
             echo '<p class="incorrect">';
-              echo $_SESSION['year'];
+              echo $_SESSION['error'];
             echo '</p>'; 
 
             echo '
@@ -354,7 +354,7 @@
               </script>
             ';
             session_destroy();
-          }elseif(!empty($_SESSION['fields']) && $_SESSION['fields'] == 'Molimo popunite sva polja!'){
+          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'Molimo popunite sva polja!'){
             echo '<p class="incorrect">';
               echo $_SESSION['fields'];
             echo '</p>'; 

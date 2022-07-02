@@ -188,11 +188,11 @@
       </div>
       <form class="modal__form" action="actions/podaci.php" method="POST">
         <div>Stara šifra</div>
-        <input type="password" name="oldpass"/>
+        <input type="password" name="oldpass" minlength="8"/>
         <div>Nova šifra</div>
-        <input type="password" name="newpass"/>
+        <input type="password" name="newpass" minlength="8"/>
         <div>Ponovite novu šifru</div>
-        <input type="password" name="newpassagain"/>
+        <input type="password" name="newpassagain" minlength="8"/>
         <?php
           if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Pogriješili ste šifru, pokušajte ponovo.'){
             echo '<p class="incorrect">';
