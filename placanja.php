@@ -270,7 +270,7 @@
         <div>Naziv uzorka</div>
         <input type="text" name="nazivuzorak"/>
         <div>Suma</div>
-        <input type="number" name="sumauzorak"/>
+        <input type="number" name="sumauzorak" step="any"/>
         <button class="btn-modal">Kreiraj uzorak &rarr;</button>
       </form>
       </div>
