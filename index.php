@@ -153,10 +153,10 @@
             Brze Transakcije
           </button>
           <button class="btn operations__tab operations__tab--2" data-tab="2">
-            Više Kartica
+            Birajte karticu
           </button>
           <button class="btn operations__tab operations__tab--3" data-tab="3">
-            100% Sigurnost
+            100% Sigurni
           </button>
         </div>
         <div
@@ -168,13 +168,11 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            Tranfser money to anyone, instantly! No fees, no BS.
+            Prebacite novac u par sekundi, nikad brže, lakše i jednostavnije!
           </h5>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Transakcije se izvršavaju u sekundi, nebitno da li šaljete ili primate novac.
+            A sam postupak plaćanja je jednostavan a ukoliko unesete pogrešan broj računa naš sistem će Vas obavijestiti.
           </p>
         </div>
 
@@ -185,13 +183,11 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            Buy a home or make your dreams come true, with instant loans.
+            VISA ili MasterCard?
           </h5>
           <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
+            Nebitno da li želite imati VISA karticu ili MasterCard, kod nas možete birati!
+            Samo je bitno da pri registraciji unesete šta želite.
           </p>
         </div>
         <div class="operations__content operations__content--3">
@@ -201,13 +197,11 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            No longer need your account? No problem! Close it instantly.
+           Kod nas je Vaš novac siguran!
           </h5>
           <p>
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat.
+            Mi mislimo na naše korisnike i kada je u pitanju zaštita.
+            Svi Vaši podaci su maksimalno zaštićeni kod nas, jer mi mislimo na privatnost i sigurnost naših klijenata!
           </p>
         </div>
       </div>
@@ -224,7 +218,7 @@
       <div class="slider">
         <div class="slide">
           <div class="testimonial">
-            <h5 class="testimonial__header">Best financial decision ever!</h5>
+            <h5 class="testimonial__header">POLO bank je revolucija, baš ono što sam tražio!</h5>
             <blockquote class="testimonial__text">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Accusantium quas quisquam non? Quas voluptate nulla minima
@@ -235,8 +229,8 @@
             </blockquote>
             <address class="testimonial__author">
               <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
-              <h6 class="testimonial__name">Aarav Lynn</h6>
-              <p class="testimonial__location">San Francisco, USA</p>
+              <h6 class="testimonial__name">Ibrahim Okić</h6>
+              <p class="testimonial__location">Srebrenik, BiH</p>
             </address>
           </div>
         </div>
@@ -244,7 +238,7 @@
         <div class="slide">
           <div class="testimonial">
             <h5 class="testimonial__header">
-              The last step to becoming a complete minimalist
+             Jednostavnost, efikanost, sigurnost i mnogo drugih stvari
             </h5>
             <blockquote class="testimonial__text">
               Quisquam itaque deserunt ullam, quia ea repellendus provident,
@@ -264,7 +258,7 @@
         <div class="slide">
           <div class="testimonial">
             <h5 class="testimonial__header">
-              Finally free from old-school banks
+              Bez komplikacija, ogromne papirologije, stresiranja
             </h5>
             <blockquote class="testimonial__text">
               Debitis, nihil sit minus suscipit magni aperiam vel tenetur
@@ -276,8 +270,8 @@
             </blockquote>
             <address class="testimonial__author">
               <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
-              <h6 class="testimonial__name">Francisco Gomes</h6>
-              <p class="testimonial__location">Lisbon, Portugal</p>
+              <h6 class="testimonial__name">Nermina Halilčević</h6>
+              <p class="testimonial__location">Živinice, BiH</p>
             </address>
           </div>
         </div>
