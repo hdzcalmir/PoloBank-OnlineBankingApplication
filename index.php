@@ -55,7 +55,6 @@
       </div>
       </nav>
       <div class="header__title">
-        <!-- <h1 onclick="alert('HTML alert')"> -->
         <h1>
           Birajte bolju 
           <br />
@@ -216,19 +215,34 @@
       </div>
 
       <div class="slider">
-        <div class="slide">
+        <div class="slide"> 
           <div class="testimonial">
-            <h5 class="testimonial__header">POLO bank je revolucija, baš ono što sam tražio!</h5>
+            <h5 class="testimonial__header">POLO bank je idealna za biznise</h5>
             <blockquote class="testimonial__text">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Accusantium quas quisquam non? Quas voluptate nulla minima
-              deleniti optio ullam nesciunt, numquam corporis et asperiores
-              laboriosam sunt, praesentium suscipit blanditiis. Necessitatibus
-              id alias reiciendis, perferendis facere pariatur dolore veniam
-              autem esse non voluptatem saepe provident nihil molestiae.
+                Polo BANK je idealna za moj biznis, to je ono što sam oduvijek tražila.
+                Olakšava mi mnoge stvari, nema bespotrebne papirologije, sve ide online putem i gotovo je za par minuta.
+                Polo BANK je revoloucija u pravom smislu te riječi.
             </blockquote>
             <address class="testimonial__author">
               <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
+              <h6 class="testimonial__name">Nermina Halilčević</h6>
+              <p class="testimonial__location">Živinice, BiH</p>
+            </address>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="testimonial">
+            <h5 class="testimonial__header">
+            Jednostavnost, efikanost, sigurnost i mnogo drugih stvari
+            </h5>
+            <blockquote class="testimonial__text">
+                Već duži niz godina obavljam poslove za klijente iz inostranstava i jedan od najvećih 
+                problema mi je bila banka. Sada je to sve jednostavno, nemam brige po tom pitanju.
+                Servis kao i sama podrška su na zavidnom nivou.
+            </blockquote>
+            <address class="testimonial__author">
+              <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
               <h6 class="testimonial__name">Ibrahim Okić</h6>
               <p class="testimonial__location">Srebrenik, BiH</p>
             </address>
@@ -238,40 +252,18 @@
         <div class="slide">
           <div class="testimonial">
             <h5 class="testimonial__header">
-             Jednostavnost, efikanost, sigurnost i mnogo drugih stvari
+              Niske provizije, transakcije se odvijaju u par sekundi
             </h5>
             <blockquote class="testimonial__text">
-              Quisquam itaque deserunt ullam, quia ea repellendus provident,
-              ducimus neque ipsam modi voluptatibus doloremque, corrupti
-              laborum. Incidunt numquam perferendis veritatis neque repellendus.
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-              deserunt exercitationem deleniti.
-            </blockquote>
-            <address class="testimonial__author">
-              <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
-              <h6 class="testimonial__name">Miyah Miles</h6>
-              <p class="testimonial__location">London, UK</p>
-            </address>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="testimonial">
-            <h5 class="testimonial__header">
-              Bez komplikacija, ogromne papirologije, stresiranja
-            </h5>
-            <blockquote class="testimonial__text">
-              Debitis, nihil sit minus suscipit magni aperiam vel tenetur
-              incidunt commodi architecto numquam omnis nulla autem,
-              necessitatibus blanditiis modi similique quidem. Odio aliquam
-              culpa dicta beatae quod maiores ipsa minus consequatur error sunt,
-              deleniti saepe aliquid quos inventore sequi. Necessitatibus id
-              alias reiciendis, perferendis facere.
+              Oduvijek sam mrzio te ogromne provizije pri slanju ili primanju novca a pored toga 
+              tu je i dug period izvršavanja istih.
+              Polo BANK je to svela na minimum, kako provizije tako i sam period izvršavanja transakcija.
+              Zadobili su moje povjerenje.
             </blockquote>
             <address class="testimonial__author">
               <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
-              <h6 class="testimonial__name">Nermina Halilčević</h6>
-              <p class="testimonial__location">Živinice, BiH</p>
+              <h6 class="testimonial__name">Amel Hadžić</h6>
+              <p class="testimonial__location">Srebrenik, BiH</p>
             </address>
           </div>
         </div>
@@ -417,7 +409,5 @@
       </form>
     </div> 
 
-
-    <!-- <script src="script.js"></script> -->
   </body>
 </html>
