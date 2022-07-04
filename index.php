@@ -65,7 +65,7 @@
         <img
           src="img/hero.png"
           class="header__img"
-          alt="Minimalist bank items"
+          alt="Polo BANK logo"
         />
       </div>
     </header>
@@ -82,7 +82,7 @@
         <img
           src="img/digital-lazy.png"
           data-src="img/digital.png"
-          alt="Computer"
+          alt="Digitalna banka POLO banka"
           class="features__img lazy-img"
         />
         <div class="features__feature">
@@ -111,14 +111,14 @@
         <img
           src="img/grow-lazy.png"
           data-src="img/grow.png"
-          alt="Plant"
+          alt="Niske provizije"
           class="features__img lazy-img img-center"
         />
 
         <img
           src="img/card-lazy.png"
           data-src="img/card.png"
-          alt="Credit card"
+          alt="Polo BANK kartica"
           class="features__img lazy-img"
         />
         <div class="features__feature">
@@ -224,7 +224,7 @@
                 Polo BANK je revoloucija u pravom smislu te riječi.
             </blockquote>
             <address class="testimonial__author">
-              <img src="img/user-1.jpg" alt="" class="testimonial__photo" />
+              <img src="img/user-1.jpg" alt="zadovoljan korisnik Polo BANK" class="testimonial__photo" />
               <h6 class="testimonial__name">Nermina Halilčević</h6>
               <p class="testimonial__location">Živinice, BiH</p>
             </address>
@@ -242,7 +242,7 @@
                 Servis kao i sama podrška su na zavidnom nivou.
             </blockquote>
             <address class="testimonial__author">
-              <img src="img/user-2.jpg" alt="" class="testimonial__photo" />
+              <img src="img/user-2.jpg" alt="zadovoljan korisnik Polo BANK" class="testimonial__photo" />
               <h6 class="testimonial__name">Ibrahim Okić</h6>
               <p class="testimonial__location">Srebrenik, BiH</p>
             </address>
@@ -261,7 +261,7 @@
               Zadobili su moje povjerenje.
             </blockquote>
             <address class="testimonial__author">
-              <img src="img/user-3.jpg" alt="" class="testimonial__photo" />
+              <img src="img/user-3.jpg" alt="zadovoljan korisnik Polo BANK" class="testimonial__photo" />
               <h6 class="testimonial__name">Amel Hadžić</h6>
               <p class="testimonial__location">Srebrenik, BiH</p>
             </address>
@@ -284,7 +284,7 @@
     </section>
 
     <footer class="footer">
-      <img src="img/icon.png" alt="Logo" class="footer__logo" />
+      <img src="img/icon.png" alt="Polo BANK logotip" class="footer__logo" />
       <p class="footer__copyright">
         &copy; Sva prava zadržana od strane autora Almira Hodžića.
       </p>
