@@ -208,19 +208,19 @@
     <div class="modal_window hidden" id="modalpass">
       <div class="header">
       <h2 class="modal__header">
-        Promijenite<span class="highlight" style="color:#fff;"> šifru.</span>
+        Promijenite<span class="highlight" style="color:#fff;"> lozinku.</span>
       </h2>
         <button class="btn_close-modal">&times;</button>
       </div>
       <form class="modal__form" action="actions/sifra.php" method="POST">
-        <div>Stara šifra</div>
+        <div>Stara lozinka</div>
         <input type="password" name="oldpass" minlength="8"/>
-        <div>Nova šifra</div>
+        <div>Nova lozinka</div>
         <input type="password" name="newpass" minlength="8"/>
-        <div>Ponovite novu šifru</div>
+        <div>Ponovite novu lozinku</div>
         <input type="password" name="newpassagain" minlength="8"/>
         <?php
-          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Pogriješili ste šifru, pokušajte ponovo.'){
+          if(!empty($_SESSION['error']) && $_SESSION['error'] == 'Pogriješili ste lozinku, pokušajte ponovo.'){
             echo '<p class="incorrect">';
               echo $_SESSION['error'];
             echo '</p>';
@@ -233,7 +233,7 @@
               </script>
             ';
             unset($_SESSION['error']);
-          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Niste unijeli šifru.'){
+          }elseif(!empty($_SESSION['error']) && $_SESSION['error'] == 'GREŠKA! Niste unijeli lozinku.'){
             echo '<p class="incorrect">';
               echo $_SESSION['error'];
             echo '</p>';
@@ -246,7 +246,7 @@
               </script>
             ';
             unset($_SESSION['error']);
-          }elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Uspješno ste promijenili šifru.'){
+          }elseif(!empty($_SESSION['success']) && $_SESSION['success'] == 'Uspješno ste promijenili lozinku.'){
             echo '<p class="success">';
               echo $_SESSION['success'];
             echo '</p>';
