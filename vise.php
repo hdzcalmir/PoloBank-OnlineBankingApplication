@@ -68,14 +68,14 @@
             </div>
             <h5 class="tittle_sett">Postavke</h5>
             <div class="name_row pin button-modal" data-target="#modalpin">
-            <div class="col col_form">
+            <div class="col col_change">
               <div class="profile_form">
                 Promjena pina
               </div>
             </div>
             </div> 
             <div class="name_row pass button-modal" data-target="#modalpass">
-            <div class="col col_form">
+            <div class="col col_change">
               <div class="profile_form">
                 Promjena lozinke
               </div>
@@ -120,6 +120,351 @@
                   </div>
                   <div class="col col_input">
                   <div>1.95583</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 USD
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.87630</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>2.01241</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 CHF
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.92624</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>2.04539</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  100 HRK
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>25.241</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>26.802</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  100 RSD
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.62955</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>1.70619</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 AUD
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.27445</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>1.35328</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 CAD
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.44303</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>1.53229</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 CNY
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.2792</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.2964</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 CZK
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.07788</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.08154</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 DKK
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.25751</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.26802</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  100 HUF
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.473</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.496</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  100 JPY
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>1.36847</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>1.44138</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 NOK
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.18366</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.19698</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 SEK
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.17815</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.19107</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 GBP
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>2.20924</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>2.39335</div>
+                  </div>
+                </div>
+              </div>
+              <div class="exchange_row">
+                <div class="exchange_form">
+                <div class="col col_form">
+                  1 TRY
+                </div>
+                </div>
+                <div class="exchange_type">
+                <div class="col col_form">
+                  <div>Kupovni</div>
+                </div>
+                  <div class="col col_form">
+                  <div>Prodajni</div>
+                </div>
+                </div>
+                <div class="exchange_value">
+                <div class="col col_input">
+                  <div>0.103671</div>
+                  </div>
+                  <div class="col col_input">
+                  <div>0.119277</div>
                   </div>
                 </div>
               </div>

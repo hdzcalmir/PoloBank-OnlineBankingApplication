@@ -8637,7 +8637,11 @@ a[data-toggle="collapse"] {
 
       .col_form {
         display: flex;
-        justify-content: start;
+        justify-content: center;
+      }
+
+      .col_change {
+        display: flex;
       }
       .col_input {
         display: flex;
@@ -8756,9 +8760,11 @@ a[data-toggle="collapse"] {
         color: #fff;
         /* padding: 0.1rem 1rem; */
         border-radius: 10rem;
-        margin-right: 2rem;
-        width: 62px;
+        /* margin-right: 2rem; */
+        width: 89px;
         background-color: #226CE0;
+        display: flex;
+        justify-content: center;
       }
 
       .sample_form {
