@@ -5,18 +5,18 @@ require_once('../actions/db.php');
 
 if(!empty($_POST['imeuzorak']) && !empty($_POST['racunuzorak']) && !empty($_POST['nazivuzorak']) && !empty($_POST['sumauzorak'])) { 
         $racunuzorak = $_POST['racunuzorak']; 
-        $stmtmt5 = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
+        $stmtmt5 = $db->prepare("SELECT * FROM racuni WHERE iban = ?"); 
         $stmtmt5->execute([$racunuzorak]); 
         if($stmtmt5->rowCount() == 1) { 
 
             $racunuzorak = $_POST['racunuzorak']; 
 
-            $stmtmt33 = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+            $stmtmt33 = $db->prepare("SELECT iban FROM racuni WHERE id_korisnika = ?"); 
             $stmtmt33->execute([$_SESSION['clientSQLID']]); 
             $racunposiljaoca = '';
             foreach($stmtmt33 as $racun) $racunposiljaoca = $racun['iban']; 
 
-            $statement15 = $db->prepare("SELECT id_korisnika FROM kartice WHERE iban = ?"); 
+            $statement15 = $db->prepare("SELECT id_korisnika FROM racuni WHERE iban = ?"); 
             $statement15->execute([$_POST['racunuzorak']]); 
             $rowsime = $statement15->fetchAll(); 
             $idprimaoca = ''; 

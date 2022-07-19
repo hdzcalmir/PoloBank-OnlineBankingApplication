@@ -58,10 +58,10 @@ CREATE TABLE `analitika` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kartice`
+-- Table structure for table `racuni`
 --
 
-CREATE TABLE `kartice` (
+CREATE TABLE `racuni` (
   `id_kartice` int(11) NOT NULL,
   `id_korisnika` int(11) NOT NULL,
   `tip_kartice` varchar(64) CHARACTER SET utf8 NOT NULL,
@@ -129,9 +129,9 @@ ALTER TABLE `analitika`
   ADD PRIMARY KEY (`id_korisnika`);
 
 --
--- Indexes for table `kartice`
+-- Indexes for table `racuni`
 --
-ALTER TABLE `kartice`
+ALTER TABLE `racuni`
   ADD PRIMARY KEY (`id_kartice`);
 
 --
@@ -157,9 +157,9 @@ ALTER TABLE `uzorci`
 --
 
 --
--- AUTO_INCREMENT for table `kartice`
+-- AUTO_INCREMENT for table `racuni`
 --
-ALTER TABLE `kartice`
+ALTER TABLE `racuni`
   MODIFY `id_kartice` int(11) NOT NULL AUTO_INCREMENT;
 
 --

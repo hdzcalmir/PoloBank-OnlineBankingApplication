@@ -48,7 +48,7 @@
               <div class="transaction_acc">
               <?php 
                   // Getanje broja računa kartice korisnika
-                  $statement = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT iban FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $iban = ''; 

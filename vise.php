@@ -37,7 +37,7 @@
               <div class="my_name">
                 <?php 
                   // Getanje broja računa kartice korisnika
-                  $statement = $db->prepare("SELECT broj_kartice FROM kartice WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT broj_kartice FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $broj_kartice = ''; 
@@ -56,7 +56,7 @@
               <div class="my_name">
                 <?php 
                   // Getanje broja računa kartice korisnika
-                  $statement = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT iban FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $iban = ''; 

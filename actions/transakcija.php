@@ -12,21 +12,21 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
     
 
     // Getanje broja računa kartice korisnika
-    $statement = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+    $statement = $db->prepare("SELECT iban FROM racuni WHERE id_korisnika = ?"); 
     $statement->execute([$_SESSION['clientSQLID']]); 
     $rows = $statement->fetchAll(); 
     $broj_kartice = ''; 
     foreach ($rows as $row) { $broj_kartice = $row['iban']; }
 
      // Getanje korisnikovog balanasa na računu
-     $statement = $db->prepare("SELECT balans_kartice, tip_kartice FROM kartice WHERE id_korisnika = ?"); 
+     $statement = $db->prepare("SELECT balans_kartice, tip_kartice FROM racuni WHERE id_korisnika = ?"); 
      $statement->execute([$_SESSION['clientSQLID']]); 
      $rows = $statement->fetchAll(); 
      $balans = $tip_kartice = ''; 
      foreach ($rows as $row) { $balansusera = $row['balans_kartice'];}
 
     $brojracuna = $_POST['brojracuna'];
-    $stmtmt6 = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
+    $stmtmt6 = $db->prepare("SELECT * FROM racuni WHERE iban = ?"); 
     $stmtmt6->execute([$brojracuna]); 
 
 
@@ -58,7 +58,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
     
     
     else {
-        $balansracuna = $db->prepare("SELECT balans_kartice FROM kartice WHERE iban = ?");
+        $balansracuna = $db->prepare("SELECT balans_kartice FROM racuni WHERE iban = ?");
         $balansracuna->execute([$brojracuna]);
 
         foreach ($balansracuna as $balanskartice) {
@@ -70,12 +70,12 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
         $sumatransakcije = $_POST['iznos_uplate'];
         $balansupdate = $balans + $uplata - 1; 
 
-        $stmtmt6 = $db->prepare("UPDATE kartice SET balans_kartice = ? WHERE iban = ?"); 
+        $stmtmt6 = $db->prepare("UPDATE racuni SET balans_kartice = ? WHERE iban = ?"); 
         $stmtmt6->execute([$balansupdate, $brojracuna]);  
 
         $balansrazlika = $balansusera - $uplata;
 
-        $stmtmt7 = $db->prepare("UPDATE kartice SET balans_kartice = ? WHERE iban = ?"); 
+        $stmtmt7 = $db->prepare("UPDATE racuni SET balans_kartice = ? WHERE iban = ?"); 
         $stmtmt7->execute([$balansrazlika, $broj_kartice]);  
 
         // ISPLATA
@@ -88,7 +88,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
         // UPLATA
  
-        $getid = $db->prepare("SELECT * FROM kartice WHERE iban = ?"); 
+        $getid = $db->prepare("SELECT * FROM racuni WHERE iban = ?"); 
         $getid->execute([$brojracuna]);
         $primaocid = '';
         foreach($getid as $idkorisnika) $primaocid = $idkorisnika['id_korisnika'];  
@@ -130,7 +130,7 @@ if(!empty($_POST['brojracuna']) && !empty($_POST['imeprezime']) && !empty($_POST
 
         if(!empty($_POST['imeuzorka'])) { 
 
-            $statement16 = $db->prepare("SELECT id_korisnika FROM kartice WHERE iban = ?"); 
+            $statement16 = $db->prepare("SELECT id_korisnika FROM racuni WHERE iban = ?"); 
             $statement16->execute([$_POST['brojracuna']]); 
             $rowsime3 = $statement16->fetchAll(); 
             $idprimaoca1 = ''; 

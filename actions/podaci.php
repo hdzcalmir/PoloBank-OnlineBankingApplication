@@ -77,20 +77,20 @@
 
         $iban = createIban(rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9), rand(0,9));
         
-        $stmtmt = $db->prepare("SELECT iban FROM kartice WHERE iban = ?"); 
+        $stmtmt = $db->prepare("SELECT iban FROM racuni WHERE iban = ?"); 
         $stmtmt->execute([$iban]);
 
         $count = count($stmtmt->fetchAll(PDO::FETCH_ASSOC));
 
             if($count == 0) {
-                $stmtmt2 = $db->prepare("SELECT iban FROM kartice WHERE iban = ?"); 
+                $stmtmt2 = $db->prepare("SELECT iban FROM racuni WHERE iban = ?"); 
                 $stmtmt2->execute([$iban]);
 
                 $noviIban = strval($iban);
                 $noviPin = (string)$pin;
                 
-                // Insertovanje kartice korisnika
-                $stmt = $db->prepare("INSERT INTO kartice (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                // Insertovanje racuna korisnika
+                $stmt = $db->prepare("INSERT INTO racuni (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([$sqlid, $kartica, $noviIban, $broj_kartice, $datum_isteka, $noviPin, $balans_kartice]); 
 
                 // Kreiranje analitike za korisnika

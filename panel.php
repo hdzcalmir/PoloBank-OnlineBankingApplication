@@ -41,7 +41,7 @@
               echo '<input type="hidden" id="oktobar_rashod" value="'.$value['oktobar_rashod'].'">';
               echo '<input type="hidden" id="novembar_rashod" value="'.$value['novembar_rashod'].'">';
               echo '<input type="hidden" id="decembar_rashod" value="'.$value['decembar_rashod'].'">';
-
+              
               echo '<input type="hidden" id="mjesecni_prihod" value="'.$value[$prihodivar].'">';
               echo '<input type="hidden" id="mjesecni_rashod" value="'.$value[$rashodivar].'">';
             }
@@ -90,7 +90,7 @@
             <div class="row">
               <?php 
 
-              $bojakartice = $db->prepare("SELECT tip_kartice FROM kartice WHERE id_korisnika = ?"); 
+              $bojakartice = $db->prepare("SELECT tip_kartice FROM racuni WHERE id_korisnika = ?"); 
               $bojakartice->execute([$_SESSION['clientSQLID']]); 
               $rowsboja = $bojakartice->fetchAll(); 
               $tip = ''; 
@@ -111,7 +111,7 @@
                 <div class="card-number">
                   <?php
                    // Getanje broja računa kartice korisnika
-                   $statement = $db->prepare("SELECT broj_kartice FROM kartice WHERE id_korisnika = ?"); 
+                   $statement = $db->prepare("SELECT broj_kartice FROM racuni WHERE id_korisnika = ?"); 
                    $statement->execute([$_SESSION['clientSQLID']]); 
                    $rows = $statement->fetchAll(); 
                    $iban = ''; 
@@ -146,7 +146,7 @@
                 ?>
                 <?php
                    // Getanje datuma isteka racuna
-                   $statement = $db->prepare("SELECT datum_isteka FROM kartice WHERE id_korisnika = ?"); 
+                   $statement = $db->prepare("SELECT datum_isteka FROM racuni WHERE id_korisnika = ?"); 
                    $statement->execute([$_SESSION['clientSQLID']]); 
                    $rows = $statement->fetchAll(); 
                    $istek = ''; 
@@ -158,7 +158,7 @@
                 </div>
                 <div class="iban-number">TRN  <?php 
                   // Getanje ibana korisnika
-                  $statement = $db->prepare("SELECT iban FROM kartice WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT iban FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $iban = ''; 
@@ -166,7 +166,7 @@
                   echo $iban;
                   ?></div>
                    <?php
-                   $statement = $db->prepare("SELECT tip_kartice FROM kartice WHERE id_korisnika = ?"); 
+                   $statement = $db->prepare("SELECT tip_kartice FROM racuni WHERE id_korisnika = ?"); 
                    $statement->execute([$_SESSION['clientSQLID']]); 
                    $rows = $statement->fetchAll(); 
                    $tipkartice = ''; 
@@ -191,7 +191,7 @@
               <?php
                 echo '<div class="row card-info text-card-2">';
                   // Getanje korisnikovog balansa na računu
-                  $statement = $db->prepare("SELECT balans_kartice, tip_kartice FROM kartice WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT balans_kartice, tip_kartice FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $balans = $tip_kartice = ''; 
