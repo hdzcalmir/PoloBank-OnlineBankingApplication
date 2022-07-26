@@ -111,11 +111,11 @@
                 <div class="card-number">
                   <?php
                    // Getanje broja računa kartice korisnika
-                   $statement = $db->prepare("SELECT broj_kartice FROM racuni WHERE id_korisnika = ?"); 
+                   $statement = $db->prepare("SELECT broj_racuna FROM racuni WHERE id_korisnika = ?"); 
                    $statement->execute([$_SESSION['clientSQLID']]); 
                    $rows = $statement->fetchAll(); 
-                   $iban = ''; 
-                   foreach ($rows as $row) { $broj = $row['broj_kartice']; }
+                   $broj = ''; 
+                   foreach ($rows as $row) { $broj = $row['broj_racuna']; }
                    $filter = substr($broj,0,4).(" ").substr($broj,4,4).(" ").substr($broj,8,4).(" ").substr($broj,12,4);
                   echo $filter;
                   ?>

@@ -90,7 +90,7 @@
                 $noviPin = (string)$pin;
                 
                 // Insertovanje racuna korisnika
-                $stmt = $db->prepare("INSERT INTO racuni (id_korisnika, tip_kartice, iban, broj_kartice, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt = $db->prepare("INSERT INTO racuni (id_korisnika, tip_kartice, iban, broj_racuna, datum_isteka, pin, balans_kartice) VALUES (?, ?, ?, ?, ?, ?, ?)");
                 $stmt->execute([$sqlid, $kartica, $noviIban, $broj_kartice, $datum_isteka, $noviPin, $balans_kartice]); 
 
                 // Kreiranje analitike za korisnika

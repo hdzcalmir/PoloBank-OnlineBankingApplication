@@ -95,11 +95,10 @@ INSERT INTO `korisnici` (`id_korisnika`, `email`, `sifra`, `ime_prezime`, `datum
 --
 
 CREATE TABLE `racuni` (
-  `id_kartice` int(11) NOT NULL,
+  `broj_racuna` varchar(16) NOT NULL,
   `id_korisnika` int(11) NOT NULL,
   `tip_kartice` varchar(64) CHARACTER SET utf8 NOT NULL,
   `iban` varchar(16) NOT NULL,
-  `broj_kartice` varchar(16) NOT NULL,
   `datum_isteka` varchar(14) NOT NULL DEFAULT '10-10-2003',
   `pin` varchar(4) NOT NULL,
   `balans_kartice` float NOT NULL
@@ -109,9 +108,9 @@ CREATE TABLE `racuni` (
 -- Dumping data for table `racuni`
 --
 
-INSERT INTO `racuni` (`id_kartice`, `id_korisnika`, `tip_kartice`, `iban`, `broj_kartice`, `datum_isteka`, `pin`, `balans_kartice`) VALUES
-(1, 1, 'Visa', '1613535599936499', '4255105503613013', '07/2026', '0000', 1511.7),
-(2, 2, 'Master Card', '1613284651664817', '5351950888220187', '07/2026', '1111', 743.7);
+INSERT INTO `racuni` (`id_korisnika`, `tip_kartice`, `iban`, `broj_racuna`, `datum_isteka`, `pin`, `balans_kartice`) VALUES
+(1, 'Visa', '1613535599936499', '4255105503613013', '07/2026', '0000', 1511.7),
+(2, 'Master Card', '1613284651664817', '5351950888220187', '07/2026', '1111', 743.7);
 
 -- --------------------------------------------------------
 
@@ -182,7 +181,7 @@ ALTER TABLE `korisnici`
 -- Indexes for table `racuni`
 --
 ALTER TABLE `racuni`
-  ADD PRIMARY KEY (`id_kartice`);
+  ADD PRIMARY KEY (`broj_racuna`);
 
 --
 -- Indexes for table `transakcije`
@@ -210,7 +209,7 @@ ALTER TABLE `korisnici`
 -- AUTO_INCREMENT for table `racuni`
 --
 ALTER TABLE `racuni`
-  MODIFY `id_kartice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `broj_racuna` varchar(16) NOT NULL;
 
 --
 -- AUTO_INCREMENT for table `transakcije`

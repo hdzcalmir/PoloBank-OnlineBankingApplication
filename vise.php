@@ -37,11 +37,11 @@
               <div class="my_name">
                 <?php 
                   // Getanje broja računa kartice korisnika
-                  $statement = $db->prepare("SELECT broj_kartice FROM racuni WHERE id_korisnika = ?"); 
+                  $statement = $db->prepare("SELECT broj_racuna FROM racuni WHERE id_korisnika = ?"); 
                   $statement->execute([$_SESSION['clientSQLID']]); 
                   $rows = $statement->fetchAll(); 
                   $broj_kartice = ''; 
-                  foreach ($rows as $row) { $broj_kartice = $row['broj_kartice']; }
+                  foreach ($rows as $row) { $broj_kartice = $row['broj_racuna']; }
                   $filter = substr($broj_kartice,0,4).(" ").substr($broj_kartice,4,4).(" ").substr($broj_kartice,8,4).(" ").substr($broj_kartice,12,4);
                   echo $filter;
                 ?>
