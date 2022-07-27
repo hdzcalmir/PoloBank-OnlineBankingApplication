@@ -12,9 +12,13 @@
 }
 }
 @media screen and (max-width: 1600px) { 
-  .transactions_form, .transaction_acc, .movements__typep, .sample_form {
+  .transactions_form, .movements__typep, .sample_form {
     font-size: 12px;
     margin-right: 0rem;
+  }
+
+  .transaction_acc {
+    font-size: 14px;
   }
 
   }
@@ -31,6 +35,13 @@
     }
     .transaction_acc {
       width: 140px;
+  }
+  .transactions_switch, .transactions_form, .movements__typep, .sample_form {
+    font-size: 11px;
+  }
+
+  .movements__value {
+    font-size: 14px;
   }
   
   }
@@ -59,9 +70,6 @@
   .inner-card {
     width: 100%;
   }
-    .transactions_switch, .transactions_form, .transaction_acc, .movements__typep, .sample_form {
-      font-size: 13px;
-    }
     .transaction {
       width: 100%;
     }
@@ -80,9 +88,6 @@
 
   .movements__date {
     font-size: 12px;
-}
-.movements__value {
-  font-size: 16px;
 }
 
   .samples, .transactions-all, .transaction {

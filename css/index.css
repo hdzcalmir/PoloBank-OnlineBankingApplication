@@ -607,7 +607,7 @@ h4 {
   max-width: 60rem;
   background-color: #fafafa;
   border-radius: 30px;
-  padding: 5rem 6rem;
+  padding: 1rem 4rem;
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: all 0.5s;
@@ -654,7 +654,7 @@ h4 {
 .modal__form button {
   grid-column: 1 / span 2;
   justify-self: center;
-  margin-top: 1rem;
+  margin-top: 0rem;
 }
 
 .btn_close-modal {
