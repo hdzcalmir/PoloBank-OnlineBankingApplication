@@ -10,7 +10,7 @@
       $newpin = $_POST['newpin'];
       $newpinagain = $_POST['newpinagain'];
 
-      $pincheck = $db->prepare("SELECT pin FROM kartice WHERE id_korisnika = ?"); 
+      $pincheck = $db->prepare("SELECT pin FROM racuni WHERE id_korisnika = ?"); 
       $pincheck->execute([$_SESSION['clientSQLID']]);
       $rows = $pincheck->fetchAll(); 
       $pin = '';
@@ -19,7 +19,7 @@
 
       if ($oldpin ==  $pin) {
         if($newpin == $newpinagain) {
-          $pinupdate = $db->prepare("UPDATE kartice SET pin = :pin WHERE id_korisnika = :sqlid"); 
+          $pinupdate = $db->prepare("UPDATE racuni SET pin = :pin WHERE id_korisnika = :sqlid"); 
           $pinupdate->bindParam(':pin', $newpin, PDO::PARAM_STR);
           $pinupdate->bindParam(':sqlid', $_SESSION['clientSQLID'], PDO::PARAM_INT);
           $pinupdate->execute();    
