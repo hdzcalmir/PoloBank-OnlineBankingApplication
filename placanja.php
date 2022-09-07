@@ -237,7 +237,7 @@
                     let iduzorka = $(this).data('id');
                     $.ajax({
                         url: 'ajax.php',
-                        type: 'post',
+                        type: 'POST',
                         data: {iduzorka: iduzorka},
                         success: function(response){ 
                             $('.body_sample').html(response); 
